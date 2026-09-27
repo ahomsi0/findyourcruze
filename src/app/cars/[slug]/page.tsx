@@ -15,7 +15,7 @@ export async function generateMetadata({
   return car
     ? {
         title: `${car.make} ${car.model}`,
-        description: `Explore the ${car.make} ${car.model} with Motch demo pricing, ownership estimates, strengths and trade-offs.`,
+        description: `Explore the ${car.make} ${car.model} with FindYourCruze demo pricing, ownership estimates, strengths and trade-offs.`,
       }
     : { title: "Car not found" };
 }

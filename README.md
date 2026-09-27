@@ -1,12 +1,12 @@
-# Motch
+# FindYourCruze
 
-Motch is a conversational car recommendation app. It asks about the way someone drives, what they can spend and what they care about, then turns a broad search into three explainable car matches.
+FindYourCruze is a conversational car recommendation app. It asks about the way someone drives, what they can spend and what they care about, then turns a broad search into three explainable car matches.
 
 The first version is a working vertical slice for a Lebanon demo market. Vehicle prices, specifications, ratings and monthly ownership costs are mock estimates; they are not live listings or a quote.
 
 ## Current features
 
-- A mobile-first homepage explaining the Motch experience.
+- A mobile-first homepage explaining the FindYourCruze experience.
 - A configuration-driven questionnaire with conditional financing and EV charging questions.
 - Candidate counts calculated from the mock dataset and the same hard filters used for recommendations.
 - A swipe-style preference stage with drag, buttons and arrow-key controls.

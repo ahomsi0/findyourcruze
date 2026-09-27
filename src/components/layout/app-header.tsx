@@ -4,7 +4,7 @@ import { Brand } from "./brand";
 
 export function AppHeader({
   backHref = "/",
-  backLabel = "Back to Motch",
+  backLabel = "Back to FindYourCruze",
 }: {
   backHref?: string;
   backLabel?: string;

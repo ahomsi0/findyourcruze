@@ -24,8 +24,8 @@ export default function HomePage() {
               of cars.
             </h1>
             <p className="hero-description">
-              Tell us how you drive. Motch will narrow your options down to the
-              cars that actually fit you.
+              Tell us how you drive. FindYourCruze will narrow your options
+              down to the cars that actually fit you.
             </p>
             <div className="hero-actions">
               <Link className="button-primary" href="/find">

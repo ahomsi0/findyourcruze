@@ -68,8 +68,8 @@ export function CarDetail({ car }: { car: Car }) {
           <CarImage car={car} className="detail-photo" />
           <div className="detail-title">
             <span className="section-kicker">
-              <Sparkles aria-hidden="true" size={12} /> Motch car guide · Demo
-              data
+              <Sparkles aria-hidden="true" size={12} /> FindYourCruze car guide
+              · Demo data
             </span>
             <h1>
               {car.make} {car.model}
@@ -120,7 +120,7 @@ export function CarDetail({ car }: { car: Car }) {
         </section>
 
         <section className="detail-section">
-          <h2>Your Motch snapshot</h2>
+          <h2>Your FindYourCruze snapshot</h2>
           <div className="detail-score-grid">
             {scoreCategories.map((category) => (
               <div className="detail-score" key={category}>
@@ -183,7 +183,7 @@ export function CarDetail({ car }: { car: Car }) {
           <p className="estimate-note">
             {hydrated && hasPreferences && recommendation
               ? `Your current match score is ${recommendation.match}%, based on the answers saved in this browser.`
-              : "Save a few preferences with Motch to see a personal match score here."}
+              : "Save a few preferences with FindYourCruze to see a personal match score here."}
           </p>
         </section>
 
@@ -267,7 +267,7 @@ export function CarDetail({ car }: { car: Car }) {
         </section>
         <p className="mock-disclaimer">
           All vehicle descriptions, ratings and ownership calculations are
-          mock/demo information to help explore Motch. Confirm vehicle
+          mock/demo information to help explore FindYourCruze. Confirm vehicle
           condition, local availability and current market prices independently.
         </p>
       </main>

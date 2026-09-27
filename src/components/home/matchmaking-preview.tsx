@@ -1,9 +1,8 @@
 "use client";
 
 import { useReducedMotion, motion } from "motion/react";
-import { ArrowDown, Check, Heart, Sparkles } from "lucide-react";
+import { ArrowRight, Check, Sparkles } from "lucide-react";
 import { cars } from "@/data/cars";
-import { filterCars } from "@/features/recommendation/filters";
 import { rankCars } from "@/features/recommendation/rank-cars";
 import { formatCurrency } from "@/lib/format";
 import { CarImage } from "@/components/cars/car-image";
@@ -18,18 +17,10 @@ const sampleAnswers: QuestionnaireAnswers = {
   priorities: ["reliability", "economy", "resale"],
 };
 
-const budgetAnswers = {
-  budget: sampleAnswers.budget,
-} satisfies QuestionnaireAnswers;
-const fuelAnswers = {
-  ...budgetAnswers,
-  fuels: sampleAnswers.fuels,
-} satisfies QuestionnaireAnswers;
-const budgetCount = filterCars(cars, budgetAnswers).length;
-const fuelCount = filterCars(cars, fuelAnswers).length;
 const finalMatches = rankCars(cars, sampleAnswers).slice(0, 3);
+const topMatchResult = finalMatches[0];
 const topMatch =
-  cars.find((car) => car.id === finalMatches[0]?.carId) ?? cars[2];
+  cars.find((car) => car.id === topMatchResult?.carId) ?? cars[2];
 
 export function MatchmakingPreview() {
   const reduceMotion = useReducedMotion();
@@ -39,119 +30,75 @@ export function MatchmakingPreview() {
 
   return (
     <div
-      aria-label={`A preview of Motch narrowing ${cars.length} demo cars to a shortlist`}
+      aria-label={`A preview of FindYourCruze narrowing ${cars.length} demo cars to a shortlist`}
       className="match-preview"
+      role="group"
     >
-      <motion.div
-        animate={reduceMotion ? {} : { y: [0, -8, 0], rotate: [0, 1.1, 0] }}
-        className="preference-chip chip-budget"
-        transition={{ duration: 5.8, repeat: Infinity, ease: "easeInOut" }}
-      >
-        <span className="chip-dot chip-dot-terracotta" /> Under $20k
-      </motion.div>
-      <motion.div
-        animate={reduceMotion ? {} : { y: [0, 7, 0], rotate: [0, -1.2, 0] }}
-        className="preference-chip chip-reliable"
-        transition={{
-          duration: 6.4,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 0.3,
-        }}
-      >
-        <span className="chip-dot chip-dot-sage" /> Reliable
-      </motion.div>
-      <motion.div
-        animate={reduceMotion ? {} : { y: [0, -6, 0], rotate: [0, -1, 0] }}
-        className="preference-chip chip-economy"
-        transition={{
-          duration: 5.2,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 0.6,
-        }}
-      >
-        Low fuel use <span className="chip-icon">↗</span>
-      </motion.div>
-
-      <div className="preview-orbit" aria-hidden="true" />
-      <motion.div
-        animate={{ opacity: 1, y: 0, scale: 1 }}
+      <div aria-hidden="true" className="preview-glow" />
+      <motion.article
+        animate={{ opacity: 1, y: 0 }}
         className="preview-car-card"
-        initial={reduceMotion ? false : { opacity: 0, y: 16, scale: 0.97 }}
+        initial={reduceMotion ? false : { opacity: 0, y: 16 }}
         transition={transition}
       >
+        <div className="preview-card-heading">
+          <span className="preview-card-eyebrow">
+            <Sparkles aria-hidden="true" size={13} /> A considered match
+          </span>
+          <span className="preview-score">
+            {topMatchResult?.match ?? "Great"}% fit
+          </span>
+        </div>
         <div className="preview-car-image-wrap">
           <CarImage car={topMatch} className="preview-car-image" />
-          <span className="preview-match-badge">
-            <Sparkles aria-hidden="true" size={13} /> Great fit
-          </span>
-          <span aria-hidden="true" className="preview-heart">
-            <Heart fill="currentColor" size={16} />
-          </span>
         </div>
         <div className="preview-car-details">
           <div>
-            <span className="micro-label">Your kind of match</span>
+            <span className="micro-label">Top match</span>
             <h3>
               {topMatch.make} {topMatch.model}
             </h3>
           </div>
           <p>
             {formatCurrency(topMatch.priceMin)}
-            <br />
             <span>estimated range start</span>
           </p>
         </div>
+        <div className="preview-preferences" aria-label="Matching priorities">
+          <span>
+            <i className="preview-dot preview-dot-terra" /> Under $20k
+          </span>
+          <span>
+            <i className="preview-dot preview-dot-sage" /> Reliable
+          </span>
+          <span>
+            <i className="preview-dot preview-dot-ink" /> Low fuel use
+          </span>
+        </div>
         <div className="preview-card-foot">
           <span>
-            <Check size={13} /> Low-stress ownership
+            <Check aria-hidden="true" size={14} /> Clear trade-offs included
           </span>
-          <span>Top match</span>
+          <span>Demo estimate</span>
         </div>
-      </motion.div>
+      </motion.article>
 
-      <div className="elimination-board">
-        <div className="elimination-head">
-          <span>From guesswork</span>
-          <span>
-            <span className="live-dot" /> Live demo
-          </span>
+      <div className="preview-summary">
+        <div className="preview-summary-copy">
+          <span>From a broad search</span>
+          <p>Priorities, costs and trade-offs shape the shortlist.</p>
         </div>
-        <div className="elimination-flow">
-          <div className="flow-step">
-            <span className="flow-number">{cars.length}</span>
-            <span className="flow-caption">cars in our demo</span>
+        <div className="preview-summary-flow">
+          <div>
+            <strong>{cars.length}</strong>
+            <span>cars considered</span>
           </div>
-          <ArrowDown aria-hidden="true" className="flow-arrow" size={14} />
-          <div className="flow-step">
-            <span className="flow-number">{budgetCount}</span>
-            <span className="flow-caption">fit your budget</span>
-          </div>
-          <ArrowDown aria-hidden="true" className="flow-arrow" size={14} />
-          <div className="flow-step">
-            <span className="flow-number">{fuelCount}</span>
-            <span className="flow-caption">match your fuel</span>
-          </div>
-          <ArrowDown aria-hidden="true" className="flow-arrow" size={14} />
-          <div className="flow-step flow-final">
-            <span className="flow-number">{finalMatches.length}</span>
-            <span className="flow-caption">worth a closer look</span>
+          <ArrowRight aria-hidden="true" size={16} />
+          <div>
+            <strong>{finalMatches.length}</strong>
+            <span>strong matches</span>
           </div>
         </div>
-        <motion.div
-          animate={{ width: "100%" }}
-          className="flow-progress"
-          initial={{ width: "18%" }}
-          transition={{ duration: 1.2, delay: 0.3 }}
-        >
-          <span />
-        </motion.div>
-      </div>
-      <div className="preview-annotation">
-        A few thoughtful questions
-        <br />
-        make the shortlist clearer.
       </div>
     </div>
   );

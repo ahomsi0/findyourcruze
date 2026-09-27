@@ -4,12 +4,12 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "Motch — Find the car that fits you",
-    template: "%s · Motch",
+    default: "FindYourCruze — Find the car that fits you",
+    template: "%s · FindYourCruze",
   },
   description:
-    "Tell Motch how you drive and discover the cars that make sense for your life.",
-  applicationName: "Motch",
+    "Find cars that fit the way you drive, your budget and your priorities.",
+  applicationName: "FindYourCruze",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

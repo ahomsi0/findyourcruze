@@ -63,8 +63,8 @@ export function ResultsExperience() {
             </div>
             <h2>Let’s get to know your needs first</h2>
             <p>
-              A few quick questions give Motch enough context to make the
-              shortlist useful.
+              A few quick questions give FindYourCruze enough context to make
+              the shortlist useful.
             </p>
             <Link className="solid-button" href="/find">
               Start finding my car <ArrowRight size={14} />
@@ -107,7 +107,7 @@ export function ResultsExperience() {
 
   return (
     <div className="app-shell">
-      <AppHeader backHref="/" backLabel="Back to Motch" />
+      <AppHeader backHref="/" backLabel="Back to FindYourCruze" />
       <main className="app-main">
         <motion.div
           animate={{ opacity: 1, y: 0 }}
@@ -185,7 +185,7 @@ export function ResultsExperience() {
                     {result.tradeoffs[0]}
                   </p>
                   <details className="reason-details">
-                    <summary>Why did Motch recommend this?</summary>
+                    <summary>Why did FindYourCruze recommend this?</summary>
                     <div className="score-list">
                       {result.scoreBreakdown.map((point) => (
                         <div
@@ -267,8 +267,8 @@ export function ResultsExperience() {
           </Link>
         </div>
         <p className="mock-disclaimer">
-          Motch’s vehicle details and ownership figures are illustrative demo
-          estimates, not live listings or financial advice. Actual prices,
+          FindYourCruze’s vehicle details and ownership figures are illustrative
+          demo estimates, not live listings or financial advice. Actual prices,
           financing terms, fuel costs, insurance and maintenance vary by vehicle
           condition, seller and market.
         </p>

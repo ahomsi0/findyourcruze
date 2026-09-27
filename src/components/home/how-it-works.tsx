@@ -32,8 +32,8 @@ export function HowItWorks() {
           <span>More certainty.</span>
         </h2>
         <p>
-          Motch turns a big, noisy decision into a few clear choices you can
-          feel good about.
+          FindYourCruze turns a big, noisy decision into a few clear choices you
+          can feel good about.
         </p>
       </div>
       <div className="steps-grid">

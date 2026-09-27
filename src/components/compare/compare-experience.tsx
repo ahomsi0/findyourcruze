@@ -258,8 +258,8 @@ export function CompareExperience() {
             </div>
             <h2>Pick at least two cars to compare</h2>
             <p>
-              Use the choices above. Start with your Motch matches or add cars
-              you’ve saved in your garage.
+              Use the choices above. Start with your FindYourCruze matches or
+              add cars you’ve saved in your garage.
             </p>
             <Link className="solid-button" href="/find">
               Find my car <ArrowRight size={14} />
