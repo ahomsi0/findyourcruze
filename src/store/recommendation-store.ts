@@ -64,7 +64,7 @@ export const useRecommendationStore = create<RecommendationState>()(
       reset: () => set(initialState),
     }),
     {
-      name: "motch-recommendation",
+      name: "findyourcruze-recommendation",
       storage: createJSONStorage(() => localStorage),
       skipHydration: true,
       partialize: (state) => ({

@@ -1,18 +1,473 @@
-import { carSchema } from "@/types/car";
+import { carSchema, type Car } from "@/types/car";
 
-const images = {
-  coupe:
-    "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1400&q=85",
-  sedan:
-    "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1400&q=85",
-  hatchback:
-    "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1400&q=85",
-  suv: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1400&q=85",
-  electric:
-    "https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=1400&q=85",
+type CarInput = Omit<Car, "image" | "imageAttribution">;
+type CarPhoto = Pick<Car, "image"> & {
+  imageAttribution: NonNullable<Car["imageAttribution"]>;
 };
 
-export const cars = carSchema.array().parse([
+const carPhotos: Record<string, CarPhoto> = {
+  "toyota-yaris": {
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/90/2020-2024_Toyota_Yaris.jpg/1280px-2020-2024_Toyota_Yaris.jpg",
+    imageAttribution: {
+      author: "TTTNIS",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:2020-2024_Toyota_Yaris.jpg",
+      licenseName: "CC0",
+      licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/deed.en"
+    }
+  },
+  "toyota-corolla": {
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/24/2018_Toyota_Corolla_%28ZRE172R%29_Ascent_sedan_%282018-11-02%29_02.jpg/1280px-2018_Toyota_Corolla_%28ZRE172R%29_Ascent_sedan_%282018-11-02%29_02.jpg",
+    imageAttribution: {
+      author: "EurovisionNim",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:2018_Toyota_Corolla_(ZRE172R)_Ascent_sedan_(2018-11-02)_02.jpg",
+      licenseName: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  "toyota-corolla-hybrid": {
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b8/2020_Toyota_Corolla_Hybrid_front_NYIAS_2019.jpg/1280px-2020_Toyota_Corolla_Hybrid_front_NYIAS_2019.jpg",
+    imageAttribution: {
+      author: "Kevauto",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:2020_Toyota_Corolla_Hybrid_front_NYIAS_2019.jpg",
+      licenseName: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  "kia-picanto": {
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/07/Kia_Picanto_1.2_%282022%29_%2852720884259%29.jpg/1280px-Kia_Picanto_1.2_%282022%29_%2852720884259%29.jpg",
+    imageAttribution: {
+      author: "Charles from Port Chester, New York",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Kia_Picanto_1.2_(2022)_(52720884259).jpg",
+      licenseName: "CC BY 2.0",
+      licenseUrl: "https://creativecommons.org/licenses/by/2.0"
+    }
+  },
+  "kia-cerato": {
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e8/2019_Kia_Cerato_1.6_SX_%2814%29.jpg/1280px-2019_Kia_Cerato_1.6_SX_%2814%29.jpg",
+    imageAttribution: {
+      author: "Bindydad123",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:2019_Kia_Cerato_1.6_SX_(14).jpg",
+      licenseName: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  "hyundai-accent": {
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/44/2021_Hyundai_Accent_1.4_Value_%28Chile%29_front_view.jpg/1280px-2021_Hyundai_Accent_1.4_Value_%28Chile%29_front_view.jpg",
+    imageAttribution: {
+      author: "RL GNZLZ",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:2021_Hyundai_Accent_1.4_Value_(Chile)_front_view.jpg",
+      licenseName: "CC BY-SA 2.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/2.0"
+    }
+  },
+  "hyundai-elantra": {
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6d/2017_Hyundai_Elantra%2C_Windsor%2C_Ontario%2C_2025-07-01.jpg/1280px-2017_Hyundai_Elantra%2C_Windsor%2C_Ontario%2C_2025-07-01.jpg",
+    imageAttribution: {
+      author: "Crisco 1492",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:2017_Hyundai_Elantra,_Windsor,_Ontario,_2025-07-01.jpg",
+      licenseName: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  "honda-civic": {
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b4/Honda_Civic_%282021%29_sedan_Sport_DSC_7054.jpg/1280px-Honda_Civic_%282021%29_sedan_Sport_DSC_7054.jpg",
+    imageAttribution: {
+      author: "Alexander-93",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Honda_Civic_(2021)_sedan_Sport_DSC_7054.jpg",
+      licenseName: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  "mazda-3": {
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/07/2020_MAZDA_3_HATCHBACK_FRONT_VIEW_IN_BRUNEI.jpg/1280px-2020_MAZDA_3_HATCHBACK_FRONT_VIEW_IN_BRUNEI.jpg",
+    imageAttribution: {
+      author: "AIMHO'S REBELLION 8490s",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:2020_MAZDA_3_HATCHBACK_FRONT_VIEW_IN_BRUNEI.jpg",
+      licenseName: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  "nissan-sunny": {
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/68/Nissan_Sunny_2019.jpg/1280px-Nissan_Sunny_2019.jpg",
+    imageAttribution: {
+      author: "Mohammed Hamad",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Nissan_Sunny_2019.jpg",
+      licenseName: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  "nissan-altima": {
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a1/2019_Nissan_Altima_%28L34%29_in_Super_Black%2C_11.21.19.jpg/1280px-2019_Nissan_Altima_%28L34%29_in_Super_Black%2C_11.21.19.jpg",
+    imageAttribution: {
+      author: "Ghostofakina",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:2019_Nissan_Altima_(L34)_in_Super_Black,_11.21.19.jpg",
+      licenseName: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  "mercedes-c250-coupe": {
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/98/2013_Mercedes-Benz_C250_coupe_%288402924139%29.jpg/1280px-2013_Mercedes-Benz_C250_coupe_%288402924139%29.jpg",
+    imageAttribution: {
+      author: "Sarah Larson from Ann Arbor, MI, USA",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:2013_Mercedes-Benz_C250_coupe_(8402924139).jpg",
+      licenseName: "CC BY 2.0",
+      licenseUrl: "https://creativecommons.org/licenses/by/2.0"
+    }
+  },
+  "mercedes-c300": {
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5d/2019_Mercedes_Benz_C300_AMG_Line_Premium%2B_Auto.jpg/1280px-2019_Mercedes_Benz_C300_AMG_Line_Premium%2B_Auto.jpg",
+    imageAttribution: {
+      author: "Calreyn88",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:2019_Mercedes_Benz_C300_AMG_Line_Premium%2B_Auto.jpg",
+      licenseName: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  "bmw-320i": {
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/2021_BMW_320i_M_Sport_Auto.jpg/1280px-2021_BMW_320i_M_Sport_Auto.jpg",
+    imageAttribution: {
+      author: "Calreyn88",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:2021_BMW_320i_M_Sport_Auto.jpg",
+      licenseName: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  "audi-a3": {
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ab/2019_Audi_A3_quattro_2.0_TFSi_front_NYIAS_2019.jpg/1280px-2019_Audi_A3_quattro_2.0_TFSi_front_NYIAS_2019.jpg",
+    imageAttribution: {
+      author: "Kevauto",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:2019_Audi_A3_quattro_2.0_TFSi_front_NYIAS_2019.jpg",
+      licenseName: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  "volkswagen-golf": {
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/83/2019_Volkswagen_Golf_SE_TSI_-_999cc_1.0_%28115PS%29_Petrol_-_Tornado_Red_-_03-2024%2C_Front.jpg/1280px-2019_Volkswagen_Golf_SE_TSI_-_999cc_1.0_%28115PS%29_Petrol_-_Tornado_Red_-_03-2024%2C_Front.jpg",
+    imageAttribution: {
+      author: "Harvey Bold",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:2019_Volkswagen_Golf_SE_TSI_-_999cc_1.0_(115PS)_Petrol_-_Tornado_Red_-_03-2024,_Front.jpg",
+      licenseName: "CC BY 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by/4.0"
+    }
+  },
+  "byd-seagull": {
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/44/BYD_Seagull_EV_2025.jpg/1280px-BYD_Seagull_EV_2025.jpg",
+    imageAttribution: {
+      author: "Captainmorlypogi1959",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:BYD_Seagull_EV_2025.jpg",
+      licenseName: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  "byd-dolphin": {
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8f/BYD_Dolphin_IAA_2023_1X7A0039.jpg/1280px-BYD_Dolphin_IAA_2023_1X7A0039.jpg",
+    imageAttribution: {
+      author: "Alexander-93",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:BYD_Dolphin_IAA_2023_1X7A0039.jpg",
+      licenseName: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  "tesla-model-3": {
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/2023_Tesla_Model_3_Highland_Long_Range_AWD_%28Rear%29.jpg/1280px-2023_Tesla_Model_3_Highland_Long_Range_AWD_%28Rear%29.jpg",
+    imageAttribution: {
+      author: "Chanokchon",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:2023_Tesla_Model_3_Highland_Long_Range_AWD_(Rear).jpg",
+      licenseName: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  "toyota-rav4-hybrid": {
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/73/Toyota_RAV4_Hybrid%2C_GIMS_2019%2C_Le_Grand-Saconnex_%28GIMS0518%29.jpg/1280px-Toyota_RAV4_Hybrid%2C_GIMS_2019%2C_Le_Grand-Saconnex_%28GIMS0518%29.jpg",
+    imageAttribution: {
+      author: "Matti Blume",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Toyota_RAV4_Hybrid,_GIMS_2019,_Le_Grand-Saconnex_(GIMS0518).jpg",
+      licenseName: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  "toyota-camry": {
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/16/2019_Toyota_Camry_%28XV70%29_2.5_V_%28front%29%2C_East_Surabaya.jpg/1280px-2019_Toyota_Camry_%28XV70%29_2.5_V_%28front%29%2C_East_Surabaya.jpg",
+    imageAttribution: {
+      author: "Alex Neman",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:2019_Toyota_Camry_(XV70)_2.5_V_(front),_East_Surabaya.jpg",
+      licenseName: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  "toyota-prius": {
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a8/2015-2018_Toyota_Prius_S.jpg/1280px-2015-2018_Toyota_Prius_S.jpg",
+    imageAttribution: {
+      author: "TTTNIS",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:2015-2018_Toyota_Prius_S.jpg",
+      licenseName: "CC0",
+      licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/deed.en"
+    }
+  },
+  "toyota-land-cruiser-prado": {
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/72/Toyota_Land_Cruiser_Prado_J150_LWB_facelift_Shishi_01_2022-09-08.jpg/1280px-Toyota_Land_Cruiser_Prado_J150_LWB_facelift_Shishi_01_2022-09-08.jpg",
+    imageAttribution: {
+      author: "JamesYoung8167",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Toyota_Land_Cruiser_Prado_J150_LWB_facelift_Shishi_01_2022-09-08.jpg",
+      licenseName: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  "toyota-hilux": {
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/df/Fatra_2023_P335_Chata_pod_Chlebom_Toyota_HiLux.jpg/1280px-Fatra_2023_P335_Chata_pod_Chlebom_Toyota_HiLux.jpg",
+    imageAttribution: {
+      author: "Fallaner",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Fatra_2023_P335_Chata_pod_Chlebom_Toyota_HiLux.jpg",
+      licenseName: "CC BY 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by/4.0"
+    }
+  },
+  "honda-jazz": {
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2c/2019_Honda_Jazz_1.5_S_%2826%29.jpg/1280px-2019_Honda_Jazz_1.5_S_%2826%29.jpg",
+    imageAttribution: {
+      author: "Bindydad123",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:2019_Honda_Jazz_1.5_S_(26).jpg",
+      licenseName: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  "honda-accord": {
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3e/2019_Honda_Accord_1.5T_Sport%2C_1.4.20.jpg/1280px-2019_Honda_Accord_1.5T_Sport%2C_1.4.20.jpg",
+    imageAttribution: {
+      author: "Ghostofakina",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:2019_Honda_Accord_1.5T_Sport,_1.4.20.jpg",
+      licenseName: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  "honda-hr-v": {
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/da/2015_Honda_HR-V.jpg/1280px-2015_Honda_HR-V.jpg",
+    imageAttribution: {
+      author: "Jacek Halicki",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:2015_Honda_HR-V.jpg",
+      licenseName: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  "honda-cr-v": {
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c3/2018_Honda_CR-V_%28RW_MY18%29_%2BSport_2WD_wagon_%282018-10-22%29_01.jpg/1280px-2018_Honda_CR-V_%28RW_MY18%29_%2BSport_2WD_wagon_%282018-10-22%29_01.jpg",
+    imageAttribution: {
+      author: "EurovisionNim",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:2018_Honda_CR-V_(RW_MY18)_%2BSport_2WD_wagon_(2018-10-22)_01.jpg",
+      licenseName: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  "hyundai-kona": {
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1c/2020_Hyundai_Kona_SEL%2C_Front_Left%2C_07-20-2021.jpg/1280px-2020_Hyundai_Kona_SEL%2C_Front_Left%2C_07-20-2021.jpg",
+    imageAttribution: {
+      author: "Elise240SX",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:2020_Hyundai_Kona_SEL,_Front_Left,_07-20-2021.jpg",
+      licenseName: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  "hyundai-kona-electric": {
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4a/2022_Hyundai_Kona_Electric.jpg/1280px-2022_Hyundai_Kona_Electric.jpg",
+    imageAttribution: {
+      author: "DestinationFearFan",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:2022_Hyundai_Kona_Electric.jpg",
+      licenseName: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  "hyundai-tucson": {
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cb/2019_Hyundai_Tucson_au_SIAM_2019.jpg/1280px-2019_Hyundai_Tucson_au_SIAM_2019.jpg",
+    imageAttribution: {
+      author: "Bull-Doser",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:2019_Hyundai_Tucson_au_SIAM_2019.jpg",
+      licenseName: "Public domain"
+    }
+  },
+  "hyundai-santa-fe": {
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/87/Hyundai_Santa_Fe%2C_GIMS_2018%2C_Le_Grand-Saconnex_%281X7A1735%29.jpg/1280px-Hyundai_Santa_Fe%2C_GIMS_2018%2C_Le_Grand-Saconnex_%281X7A1735%29.jpg",
+    imageAttribution: {
+      author: "Matti Blume",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Hyundai_Santa_Fe,_GIMS_2018,_Le_Grand-Saconnex_(1X7A1735).jpg",
+      licenseName: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  "kia-seltos": {
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e3/2024_Kia_Seltos_EX%2C_rear_right%2C_03-15-2026.jpg/1280px-2024_Kia_Seltos_EX%2C_rear_right%2C_03-15-2026.jpg",
+    imageAttribution: {
+      author: "MercurySable99",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:2024_Kia_Seltos_EX,_rear_right,_03-15-2026.jpg",
+      licenseName: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  "kia-sportage": {
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0a/2019_Kia_Sportage_2.0_EX_%2872%29.jpg/1280px-2019_Kia_Sportage_2.0_EX_%2872%29.jpg",
+    imageAttribution: {
+      author: "Bindydad123",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:2019_Kia_Sportage_2.0_EX_(72).jpg",
+      licenseName: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  "nissan-kicks": {
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ed/2020_Nissan_Kicks_front_view_%28United_States%29_%281%29_%28cropped%29.png/1280px-2020_Nissan_Kicks_front_view_%28United_States%29_%281%29_%28cropped%29.png",
+    imageAttribution: {
+      author: "Gold Pony",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:2020_Nissan_Kicks_front_view_(United_States)_(1)_(cropped).png",
+      licenseName: "CC BY 3.0",
+      licenseUrl: "https://creativecommons.org/licenses/by/3.0"
+    }
+  },
+  "nissan-qashqai": {
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ce/2019_Nissan_Qashqai_Acenta_Premium_DIG-T_-_1332cc_1.3_%28140PS%29_Petrol_-_Grey_-_05-2024%2C_Front.jpg/1280px-2019_Nissan_Qashqai_Acenta_Premium_DIG-T_-_1332cc_1.3_%28140PS%29_Petrol_-_Grey_-_05-2024%2C_Front.jpg",
+    imageAttribution: {
+      author: "Harvey Bold",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:2019_Nissan_Qashqai_Acenta_Premium_DIG-T_-_1332cc_1.3_(140PS)_Petrol_-_Grey_-_05-2024,_Front.jpg",
+      licenseName: "CC BY 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by/4.0"
+    }
+  },
+  "nissan-x-trail": {
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/74/2017-2020_Nissan_X-Trail_20X.jpg/1280px-2017-2020_Nissan_X-Trail_20X.jpg",
+    imageAttribution: {
+      author: "TTTNIS",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:2017-2020_Nissan_X-Trail_20X.jpg",
+      licenseName: "CC0",
+      licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/deed.en"
+    }
+  },
+  "nissan-leaf": {
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/56/2019_Nissan_Leaf_rear.jpg/1280px-2019_Nissan_Leaf_rear.jpg",
+    imageAttribution: {
+      author: "TTTNIS",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:2019_Nissan_Leaf_rear.jpg",
+      licenseName: "CC0",
+      licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/deed.en"
+    }
+  },
+  "mazda-cx-30": {
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7d/2021_Mazda_CX-30_SKYACTIV-G_front.jpg/1280px-2021_Mazda_CX-30_SKYACTIV-G_front.jpg",
+    imageAttribution: {
+      author: "LuvsMG481",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:2021_Mazda_CX-30_SKYACTIV-G_front.jpg",
+      licenseName: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  "mazda-cx-5": {
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/85/2017_Mazda_CX-5_%28KF%29_Maxx_2WD_wagon_%282018-11-02%29_01.jpg/1280px-2017_Mazda_CX-5_%28KF%29_Maxx_2WD_wagon_%282018-11-02%29_01.jpg",
+    imageAttribution: {
+      author: "EurovisionNim",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:2017_Mazda_CX-5_(KF)_Maxx_2WD_wagon_(2018-11-02)_01.jpg",
+      licenseName: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  "mitsubishi-asx": {
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/03/2018_Mitsubishi_ASX_2WD_%2810%29.jpg/1280px-2018_Mitsubishi_ASX_2WD_%2810%29.jpg",
+    imageAttribution: {
+      author: "Bindydad123",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:2018_Mitsubishi_ASX_2WD_(10).jpg",
+      licenseName: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  "mitsubishi-outlander": {
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/87/2018_Mitsubishi_Outlander_2.0_4WD_%2872%29.jpg/1280px-2018_Mitsubishi_Outlander_2.0_4WD_%2872%29.jpg",
+    imageAttribution: {
+      author: "Bindydad123",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:2018_Mitsubishi_Outlander_2.0_4WD_(72).jpg",
+      licenseName: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  "suzuki-swift": {
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/08/2020_Suzuki_Swift_Facelift_IMG_1880.jpg/1280px-2020_Suzuki_Swift_Facelift_IMG_1880.jpg",
+    imageAttribution: {
+      author: "Alexander-93",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:2020_Suzuki_Swift_Facelift_IMG_1880.jpg",
+      licenseName: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  "suzuki-vitara": {
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9b/2018_Suzuki_Vitara_%28LY%29_S_Turbo_wagon_%282018-11-02%29_01.jpg/1280px-2018_Suzuki_Vitara_%28LY%29_S_Turbo_wagon_%282018-11-02%29_01.jpg",
+    imageAttribution: {
+      author: "EurovisionNim",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:2018_Suzuki_Vitara_(LY)_S_Turbo_wagon_(2018-11-02)_01.jpg",
+      licenseName: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  "renault-duster": {
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d5/2022_Renault_Duster_Intens_4x2_1.3_Turbo_%28Colombia%29_front_view.png/1280px-2022_Renault_Duster_Intens_4x2_1.3_Turbo_%28Colombia%29_front_view.png",
+    imageAttribution: {
+      author: "Autosdeprimera",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:2022_Renault_Duster_Intens_4x2_1.3_Turbo_(Colombia)_front_view.png",
+      licenseName: "CC BY 3.0",
+      licenseUrl: "https://creativecommons.org/licenses/by/3.0"
+    }
+  },
+  "volkswagen-tiguan": {
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cf/2019_Volkswagen_Tiguan_1.4_TSI_Highline_%281%29.jpg/1280px-2019_Volkswagen_Tiguan_1.4_TSI_Highline_%281%29.jpg",
+    imageAttribution: {
+      author: "Bindydad123",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:2019_Volkswagen_Tiguan_1.4_TSI_Highline_(1).jpg",
+      licenseName: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  "peugeot-3008-diesel": {
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5a/2018_Peugeot_3008_1.6_Allure_%2892%29.jpg/1280px-2018_Peugeot_3008_1.6_Allure_%2892%29.jpg",
+    imageAttribution: {
+      author: "Bindydad123",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:2018_Peugeot_3008_1.6_Allure_(92).jpg",
+      licenseName: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  "bmw-x1": {
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4c/2018_BMW_X1_sDrive18i_xLine_1.5_Front.jpg/1280px-2018_BMW_X1_sDrive18i_xLine_1.5_Front.jpg",
+    imageAttribution: {
+      author: "Vauxford",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:2018_BMW_X1_sDrive18i_xLine_1.5_Front.jpg",
+      licenseName: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  "mercedes-gla-250": {
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c0/2018_Mercedes-Benz_GLA_250%2C_front_right%2C_07-09-2023.jpg/1280px-2018_Mercedes-Benz_GLA_250%2C_front_right%2C_07-09-2023.jpg",
+    imageAttribution: {
+      author: "MercurySable99",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:2018_Mercedes-Benz_GLA_250,_front_right,_07-09-2023.jpg",
+      licenseName: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  "lexus-nx-300h": {
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/07/2017_Lexus_NX_300h_Luxury_CVT_2.5_Front.jpg/1280px-2017_Lexus_NX_300h_Luxury_CVT_2.5_Front.jpg",
+    imageAttribution: {
+      author: "Vauxford",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:2017_Lexus_NX_300h_Luxury_CVT_2.5_Front.jpg",
+      licenseName: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+};
+
+function makeDemoCar(input: CarInput): CarInput {
+  return input;
+}
+
+function addCarPhoto(car: CarInput): Car {
+  const photo = carPhotos[car.id];
+  if (!photo) throw new Error(`Missing catalog photo for ${car.id}`);
+  return { ...car, ...photo };
+}
+
+const carRecords: CarInput[] = [
   {
     id: "toyota-yaris",
     slug: "toyota-yaris",
@@ -41,7 +496,6 @@ export const cars = carSchema.array().parse([
       maintenance: 9,
     },
     estimatedAnnualMaintenance: 420,
-    image: images.hatchback,
     strengths: ["Easy to own", "Low fuel use", "Strong resale"],
     weaknesses: ["Modest power", "Simple cabin"],
   },
@@ -73,7 +527,6 @@ export const cars = carSchema.array().parse([
       maintenance: 9,
     },
     estimatedAnnualMaintenance: 480,
-    image: images.sedan,
     strengths: [
       "Dependable daily driver",
       "Comfortable cabin",
@@ -109,7 +562,6 @@ export const cars = carSchema.array().parse([
       maintenance: 8,
     },
     estimatedAnnualMaintenance: 520,
-    image: images.sedan,
     strengths: ["Very low fuel use", "Excellent reliability", "Strong resale"],
     weaknesses: ["Quiet rather than exciting", "Hybrid premium"],
   },
@@ -141,7 +593,6 @@ export const cars = carSchema.array().parse([
       maintenance: 8,
     },
     estimatedAnnualMaintenance: 380,
-    image: images.hatchback,
     strengths: ["City-friendly size", "Affordable parts", "Easy to park"],
     weaknesses: ["Limited highway power", "Small rear seats"],
   },
@@ -173,7 +624,6 @@ export const cars = carSchema.array().parse([
       maintenance: 8,
     },
     estimatedAnnualMaintenance: 540,
-    image: images.sedan,
     strengths: ["Roomy interior", "Good feature set", "Balanced drive"],
     weaknesses: ["Average fuel economy", "Resale trails Toyota"],
   },
@@ -205,7 +655,6 @@ export const cars = carSchema.array().parse([
       maintenance: 8,
     },
     estimatedAnnualMaintenance: 440,
-    image: images.sedan,
     strengths: ["Good value", "Simple to maintain", "Useful boot"],
     weaknesses: ["Basic interior", "Road noise at speed"],
   },
@@ -237,7 +686,6 @@ export const cars = carSchema.array().parse([
       maintenance: 8,
     },
     estimatedAnnualMaintenance: 520,
-    image: images.sedan,
     strengths: ["Modern cabin", "Good safety kit", "Room for passengers"],
     weaknesses: ["Average performance", "CVT feel is not for everyone"],
   },
@@ -269,7 +717,6 @@ export const cars = carSchema.array().parse([
       maintenance: 7,
     },
     estimatedAnnualMaintenance: 620,
-    image: images.sedan,
     strengths: ["Engaging to drive", "Strong resale", "Useful interior space"],
     weaknesses: ["Turbo needs regular care", "Price can run high"],
   },
@@ -301,7 +748,6 @@ export const cars = carSchema.array().parse([
       maintenance: 7,
     },
     estimatedAnnualMaintenance: 590,
-    image: images.hatchback,
     strengths: [
       "Premium-feeling cabin",
       "Enjoyable steering",
@@ -337,7 +783,6 @@ export const cars = carSchema.array().parse([
       maintenance: 7,
     },
     estimatedAnnualMaintenance: 500,
-    image: images.sedan,
     strengths: [
       "Excellent rear legroom",
       "Efficient for its size",
@@ -373,7 +818,6 @@ export const cars = carSchema.array().parse([
       maintenance: 5,
     },
     estimatedAnnualMaintenance: 820,
-    image: images.sedan,
     strengths: ["Quiet, comfortable ride", "Strong highway power", "Spacious"],
     weaknesses: ["CVT history deserves a check", "Higher upkeep risk"],
   },
@@ -405,7 +849,6 @@ export const cars = carSchema.array().parse([
       maintenance: 4,
     },
     estimatedAnnualMaintenance: 1250,
-    image: images.coupe,
     strengths: [
       "Beautiful coupe proportions",
       "Premium cabin",
@@ -441,7 +884,6 @@ export const cars = carSchema.array().parse([
       maintenance: 4,
     },
     estimatedAnnualMaintenance: 1420,
-    image: images.sedan,
     strengths: ["Quick and polished", "Excellent cabin", "Strong tech"],
     weaknesses: ["Premium maintenance", "More complex to own"],
   },
@@ -473,7 +915,6 @@ export const cars = carSchema.array().parse([
       maintenance: 4,
     },
     estimatedAnnualMaintenance: 1320,
-    image: images.sedan,
     strengths: ["Excellent balance", "Engaging handling", "Premium finish"],
     weaknesses: ["Maintenance reserve matters", "Tight options affect value"],
   },
@@ -505,7 +946,6 @@ export const cars = carSchema.array().parse([
       maintenance: 5,
     },
     estimatedAnnualMaintenance: 1110,
-    image: images.sedan,
     strengths: ["Upscale cabin", "Efficient turbo engine", "Easy to maneuver"],
     weaknesses: ["Less rear room", "Specialist servicing helps"],
   },
@@ -537,7 +977,6 @@ export const cars = carSchema.array().parse([
       maintenance: 6,
     },
     estimatedAnnualMaintenance: 750,
-    image: images.hatchback,
     strengths: ["Versatile hatchback", "Refined ride", "Fun to drive"],
     weaknesses: [
       "Service history is important",
@@ -572,7 +1011,6 @@ export const cars = carSchema.array().parse([
       maintenance: 8,
     },
     estimatedAnnualMaintenance: 360,
-    image: images.electric,
     strengths: [
       "Very low running costs",
       "New-car warranty",
@@ -608,7 +1046,6 @@ export const cars = carSchema.array().parse([
       maintenance: 8,
     },
     estimatedAnnualMaintenance: 400,
-    image: images.electric,
     strengths: [
       "Quick, quiet acceleration",
       "Generous tech",
@@ -644,7 +1081,6 @@ export const cars = carSchema.array().parse([
       maintenance: 8,
     },
     estimatedAnnualMaintenance: 480,
-    image: images.electric,
     strengths: [
       "Fast and quiet",
       "Strong software experience",
@@ -680,7 +1116,6 @@ export const cars = carSchema.array().parse([
       maintenance: 8,
     },
     estimatedAnnualMaintenance: 650,
-    image: images.suv,
     strengths: [
       "Versatile family space",
       "Strong reliability",
@@ -691,7 +1126,940 @@ export const cars = carSchema.array().parse([
       "Cabin is practical rather than plush",
     ],
   },
-]);
+  // Representative configurations for a broader Lebanon demo catalog.
+  {
+    id: "toyota-camry",
+    slug: "toyota-camry",
+    make: "Toyota",
+    model: "Camry",
+    trim: "2.5L SE",
+    yearStart: 2018,
+    yearEnd: 2021,
+    bodyType: "sedan",
+    fuelType: "petrol",
+    transmission: "8-speed automatic",
+    drivetrain: "Front-wheel drive",
+    horsepower: 203,
+    zeroToHundred: 8.3,
+    fuelConsumption: 7.8,
+    priceMin: 19800,
+    priceMax: 27500,
+    scores: {
+      reliability: 9,
+      economy: 7,
+      performance: 7,
+      luxury: 7,
+      technology: 7,
+      resale: 8,
+      practicality: 8,
+      maintenance: 8,
+    },
+    estimatedAnnualMaintenance: 700,
+    strengths: ["Comfortable ride", "Spacious cabin", "Strong reliability"],
+    weaknesses: ["Larger than a compact sedan", "Higher fuel use than a hybrid"],
+  },
+  {
+    id: "toyota-prius",
+    slug: "toyota-prius",
+    make: "Toyota",
+    model: "Prius",
+    trim: "1.8L Hybrid LE",
+    yearStart: 2017,
+    yearEnd: 2020,
+    bodyType: "hatchback",
+    fuelType: "hybrid",
+    transmission: "e-CVT automatic",
+    drivetrain: "Front-wheel drive",
+    horsepower: 121,
+    zeroToHundred: 10.6,
+    fuelConsumption: 4.5,
+    priceMin: 13200,
+    priceMax: 19200,
+    scores: {
+      reliability: 9,
+      economy: 10,
+      performance: 4,
+      luxury: 5,
+      technology: 6,
+      resale: 8,
+      practicality: 8,
+      maintenance: 7,
+    },
+    estimatedAnnualMaintenance: 600,
+    strengths: ["Very low fuel use", "Versatile hatchback", "Easy daily driving"],
+    weaknesses: ["Engine gets loud under hard acceleration", "Check hybrid battery health"],
+  },
+  {
+    id: "toyota-land-cruiser-prado",
+    slug: "toyota-land-cruiser-prado",
+    make: "Toyota",
+    model: "Land Cruiser Prado",
+    trim: "4.0L VX",
+    yearStart: 2017,
+    yearEnd: 2020,
+    bodyType: "suv",
+    fuelType: "petrol",
+    transmission: "6-speed automatic",
+    drivetrain: "Four-wheel drive",
+    horsepower: 271,
+    zeroToHundred: 9.0,
+    fuelConsumption: 11.5,
+    priceMin: 35000,
+    priceMax: 51000,
+    scores: {
+      reliability: 8,
+      economy: 3,
+      performance: 8,
+      luxury: 9,
+      technology: 7,
+      resale: 10,
+      practicality: 10,
+      maintenance: 4,
+    },
+    estimatedAnnualMaintenance: 1550,
+    strengths: ["Capable off-road", "Room for family and luggage", "Strong resale"],
+    weaknesses: ["High fuel and ownership costs", "Large for tight city streets"],
+  },
+  {
+    id: "toyota-hilux",
+    slug: "toyota-hilux",
+    make: "Toyota",
+    model: "Hilux",
+    trim: "2.4L D-4D 4x4 SR5",
+    yearStart: 2018,
+    yearEnd: 2022,
+    bodyType: "pickup",
+    fuelType: "diesel",
+    transmission: "6-speed automatic",
+    drivetrain: "Four-wheel drive",
+    horsepower: 150,
+    zeroToHundred: 12.8,
+    fuelConsumption: 7.4,
+    priceMin: 25000,
+    priceMax: 36000,
+    scores: {
+      reliability: 9,
+      economy: 8,
+      performance: 6,
+      luxury: 5,
+      technology: 6,
+      resale: 10,
+      practicality: 10,
+      maintenance: 7,
+    },
+    estimatedAnnualMaintenance: 900,
+    strengths: ["Useful load bed", "Built for rough roads", "Strong resale"],
+    weaknesses: ["Firm ride when unladen", "Bulky in urban parking"],
+  },
+  {
+    id: "honda-jazz",
+    slug: "honda-jazz",
+    make: "Honda",
+    model: "Jazz",
+    trim: "1.5L EX",
+    yearStart: 2018,
+    yearEnd: 2020,
+    bodyType: "hatchback",
+    fuelType: "petrol",
+    transmission: "CVT automatic",
+    drivetrain: "Front-wheel drive",
+    horsepower: 130,
+    zeroToHundred: 9.5,
+    fuelConsumption: 6.2,
+    priceMin: 11000,
+    priceMax: 16000,
+    scores: {
+      reliability: 8,
+      economy: 8,
+      performance: 5,
+      luxury: 5,
+      technology: 6,
+      resale: 8,
+      practicality: 9,
+      maintenance: 7,
+    },
+    estimatedAnnualMaintenance: 500,
+    strengths: ["Easy to park", "Flexible cabin space", "Low running costs"],
+    weaknesses: ["Road noise at speed", "Modest acceleration"],
+  },
+  {
+    id: "honda-accord",
+    slug: "honda-accord",
+    make: "Honda",
+    model: "Accord",
+    trim: "1.5L Turbo EX",
+    yearStart: 2018,
+    yearEnd: 2021,
+    bodyType: "sedan",
+    fuelType: "petrol",
+    transmission: "CVT automatic",
+    drivetrain: "Front-wheel drive",
+    horsepower: 192,
+    zeroToHundred: 7.4,
+    fuelConsumption: 7.2,
+    priceMin: 19000,
+    priceMax: 27500,
+    scores: {
+      reliability: 8,
+      economy: 7,
+      performance: 7,
+      luxury: 8,
+      technology: 8,
+      resale: 7,
+      practicality: 8,
+      maintenance: 6,
+    },
+    estimatedAnnualMaintenance: 900,
+    strengths: ["Roomy and comfortable", "Strong turbo power", "Well-equipped cabin"],
+    weaknesses: ["CVT feel is not sporty", "Turbo and electronics need a good service history"],
+  },
+  {
+    id: "honda-hr-v",
+    slug: "honda-hr-v",
+    make: "Honda",
+    model: "HR-V",
+    trim: "1.8L EX",
+    yearStart: 2018,
+    yearEnd: 2021,
+    bodyType: "crossover",
+    fuelType: "petrol",
+    transmission: "CVT automatic",
+    drivetrain: "Front-wheel drive",
+    horsepower: 141,
+    zeroToHundred: 10.3,
+    fuelConsumption: 7.6,
+    priceMin: 15500,
+    priceMax: 22500,
+    scores: {
+      reliability: 8,
+      economy: 7,
+      performance: 5,
+      luxury: 6,
+      technology: 6,
+      resale: 8,
+      practicality: 8,
+      maintenance: 7,
+    },
+    estimatedAnnualMaintenance: 650,
+    strengths: ["Easy to live with", "Flexible rear seating", "Good visibility"],
+    weaknesses: ["Modest highway power", "Cabin materials are simple"],
+  },
+  {
+    id: "honda-cr-v",
+    slug: "honda-cr-v",
+    make: "Honda",
+    model: "CR-V",
+    trim: "1.5L Turbo EX AWD",
+    yearStart: 2018,
+    yearEnd: 2021,
+    bodyType: "suv",
+    fuelType: "petrol",
+    transmission: "CVT automatic",
+    drivetrain: "All-wheel drive",
+    horsepower: 190,
+    zeroToHundred: 8.2,
+    fuelConsumption: 8.4,
+    priceMin: 21000,
+    priceMax: 30500,
+    scores: {
+      reliability: 8,
+      economy: 6,
+      performance: 7,
+      luxury: 7,
+      technology: 7,
+      resale: 8,
+      practicality: 9,
+      maintenance: 6,
+    },
+    estimatedAnnualMaintenance: 900,
+    strengths: ["Spacious family cabin", "Useful cargo room", "Confident turbo power"],
+    weaknesses: ["Fuel use rises in traffic", "Check turbo and CVT service records"],
+  },
+  {
+    id: "hyundai-kona",
+    slug: "hyundai-kona",
+    make: "Hyundai",
+    model: "Kona",
+    trim: "2.0L SEL",
+    yearStart: 2020,
+    yearEnd: 2023,
+    bodyType: "crossover",
+    fuelType: "petrol",
+    transmission: "6-speed automatic",
+    drivetrain: "Front-wheel drive",
+    horsepower: 147,
+    zeroToHundred: 9.2,
+    fuelConsumption: 7.5,
+    priceMin: 15500,
+    priceMax: 22500,
+    scores: {
+      reliability: 7,
+      economy: 7,
+      performance: 6,
+      luxury: 6,
+      technology: 7,
+      resale: 7,
+      practicality: 7,
+      maintenance: 6,
+    },
+    estimatedAnnualMaintenance: 650,
+    strengths: ["Compact city size", "Easy controls", "Useful safety features"],
+    weaknesses: ["Rear seat is tight for adults", "Ride can feel firm"],
+  },
+  {
+    id: "hyundai-kona-electric",
+    slug: "hyundai-kona-electric",
+    make: "Hyundai",
+    model: "Kona Electric",
+    trim: "64 kWh Long Range",
+    yearStart: 2020,
+    yearEnd: 2022,
+    bodyType: "crossover",
+    fuelType: "electric",
+    transmission: "Single-speed automatic",
+    drivetrain: "Front-wheel drive",
+    horsepower: 201,
+    zeroToHundred: 7.9,
+    electricConsumption: 16.0,
+    priceMin: 18500,
+    priceMax: 26000,
+    scores: {
+      reliability: 8,
+      economy: 10,
+      performance: 7,
+      luxury: 7,
+      technology: 8,
+      resale: 6,
+      practicality: 7,
+      maintenance: 7,
+    },
+    estimatedAnnualMaintenance: 500,
+    strengths: ["Quiet, quick city driving", "Low energy cost", "Useful hatchback shape"],
+    weaknesses: ["Range depends on battery condition", "Charging access is essential"],
+  },
+  {
+    id: "hyundai-tucson",
+    slug: "hyundai-tucson",
+    make: "Hyundai",
+    model: "Tucson",
+    trim: "2.0L GLS",
+    yearStart: 2019,
+    yearEnd: 2022,
+    bodyType: "suv",
+    fuelType: "petrol",
+    transmission: "6-speed automatic",
+    drivetrain: "Front-wheel drive",
+    horsepower: 161,
+    zeroToHundred: 10.5,
+    fuelConsumption: 8.3,
+    priceMin: 18000,
+    priceMax: 26500,
+    scores: {
+      reliability: 8,
+      economy: 6,
+      performance: 6,
+      luxury: 6,
+      technology: 6,
+      resale: 8,
+      practicality: 8,
+      maintenance: 7,
+    },
+    estimatedAnnualMaintenance: 750,
+    strengths: ["Comfortable ride", "Good everyday space", "Straightforward controls"],
+    weaknesses: ["Average fuel economy", "Interior is less premium than newer rivals"],
+  },
+  {
+    id: "hyundai-santa-fe",
+    slug: "hyundai-santa-fe",
+    make: "Hyundai",
+    model: "Santa Fe",
+    trim: "2.4L SEL AWD",
+    yearStart: 2018,
+    yearEnd: 2021,
+    bodyType: "suv",
+    fuelType: "petrol",
+    transmission: "8-speed automatic",
+    drivetrain: "All-wheel drive",
+    horsepower: 185,
+    zeroToHundred: 10.4,
+    fuelConsumption: 9.3,
+    priceMin: 22000,
+    priceMax: 31500,
+    scores: {
+      reliability: 7,
+      economy: 5,
+      performance: 6,
+      luxury: 8,
+      technology: 7,
+      resale: 7,
+      practicality: 9,
+      maintenance: 6,
+    },
+    estimatedAnnualMaintenance: 950,
+    strengths: ["Generous passenger space", "Comfortable on longer trips", "Useful cargo room"],
+    weaknesses: ["Higher fuel costs", "Large footprint in town"],
+  },
+  {
+    id: "kia-seltos",
+    slug: "kia-seltos",
+    make: "Kia",
+    model: "Seltos",
+    trim: "1.6L EX",
+    yearStart: 2021,
+    yearEnd: 2024,
+    bodyType: "crossover",
+    fuelType: "petrol",
+    transmission: "6-speed automatic",
+    drivetrain: "Front-wheel drive",
+    horsepower: 121,
+    zeroToHundred: 11.5,
+    fuelConsumption: 7.4,
+    priceMin: 18000,
+    priceMax: 25000,
+    scores: {
+      reliability: 7,
+      economy: 7,
+      performance: 5,
+      luxury: 6,
+      technology: 7,
+      resale: 7,
+      practicality: 8,
+      maintenance: 7,
+    },
+    estimatedAnnualMaintenance: 650,
+    strengths: ["Modern cabin layout", "Easy entry and visibility", "Practical cargo area"],
+    weaknesses: ["Engine feels modest when fully loaded", "Road noise at speed"],
+  },
+  {
+    id: "kia-sportage",
+    slug: "kia-sportage",
+    make: "Kia",
+    model: "Sportage",
+    trim: "2.4L EX AWD",
+    yearStart: 2019,
+    yearEnd: 2022,
+    bodyType: "suv",
+    fuelType: "petrol",
+    transmission: "6-speed automatic",
+    drivetrain: "All-wheel drive",
+    horsepower: 181,
+    zeroToHundred: 9.1,
+    fuelConsumption: 9.0,
+    priceMin: 19000,
+    priceMax: 27500,
+    scores: {
+      reliability: 8,
+      economy: 5,
+      performance: 6,
+      luxury: 7,
+      technology: 6,
+      resale: 7,
+      practicality: 9,
+      maintenance: 6,
+    },
+    estimatedAnnualMaintenance: 850,
+    strengths: ["Comfortable family layout", "Good feature availability", "Confident all-weather grip"],
+    weaknesses: ["Fuel use can be high", "Check AWD and transmission servicing"],
+  },
+  {
+    id: "nissan-kicks",
+    slug: "nissan-kicks",
+    make: "Nissan",
+    model: "Kicks",
+    trim: "1.6L SV",
+    yearStart: 2019,
+    yearEnd: 2022,
+    bodyType: "crossover",
+    fuelType: "petrol",
+    transmission: "CVT automatic",
+    drivetrain: "Front-wheel drive",
+    horsepower: 122,
+    zeroToHundred: 9.8,
+    fuelConsumption: 6.9,
+    priceMin: 13500,
+    priceMax: 19500,
+    scores: {
+      reliability: 7,
+      economy: 8,
+      performance: 4,
+      luxury: 5,
+      technology: 6,
+      resale: 7,
+      practicality: 8,
+      maintenance: 6,
+    },
+    estimatedAnnualMaintenance: 600,
+    strengths: ["Easy to maneuver", "Good visibility", "Efficient for a crossover"],
+    weaknesses: ["Limited power for steep climbs", "CVT history deserves a check"],
+  },
+  {
+    id: "nissan-qashqai",
+    slug: "nissan-qashqai",
+    make: "Nissan",
+    model: "Qashqai",
+    trim: "2.0L SL",
+    yearStart: 2018,
+    yearEnd: 2021,
+    bodyType: "crossover",
+    fuelType: "petrol",
+    transmission: "CVT automatic",
+    drivetrain: "Front-wheel drive",
+    horsepower: 141,
+    zeroToHundred: 10.5,
+    fuelConsumption: 7.8,
+    priceMin: 16000,
+    priceMax: 23000,
+    scores: {
+      reliability: 7,
+      economy: 7,
+      performance: 5,
+      luxury: 7,
+      technology: 7,
+      resale: 7,
+      practicality: 8,
+      maintenance: 5,
+    },
+    estimatedAnnualMaintenance: 800,
+    strengths: ["Comfortable compact SUV", "Good outward visibility", "Useful safety equipment"],
+    weaknesses: ["CVT condition is important", "Not especially quick"],
+  },
+  {
+    id: "nissan-x-trail",
+    slug: "nissan-x-trail",
+    make: "Nissan",
+    model: "X-Trail",
+    trim: "2.5L SV AWD",
+    yearStart: 2018,
+    yearEnd: 2021,
+    bodyType: "suv",
+    fuelType: "petrol",
+    transmission: "CVT automatic",
+    drivetrain: "All-wheel drive",
+    horsepower: 170,
+    zeroToHundred: 9.8,
+    fuelConsumption: 8.5,
+    priceMin: 18000,
+    priceMax: 26000,
+    scores: {
+      reliability: 7,
+      economy: 6,
+      performance: 6,
+      luxury: 7,
+      technology: 6,
+      resale: 7,
+      practicality: 9,
+      maintenance: 5,
+    },
+    estimatedAnnualMaintenance: 950,
+    strengths: ["Room for passengers and luggage", "Useful AWD capability", "Comfortable family ride"],
+    weaknesses: ["CVT service history matters", "Fuel use is higher in city traffic"],
+  },
+  {
+    id: "nissan-leaf",
+    slug: "nissan-leaf",
+    make: "Nissan",
+    model: "Leaf",
+    trim: "40 kWh S",
+    yearStart: 2019,
+    yearEnd: 2022,
+    bodyType: "hatchback",
+    fuelType: "electric",
+    transmission: "Single-speed automatic",
+    drivetrain: "Front-wheel drive",
+    horsepower: 147,
+    zeroToHundred: 8.0,
+    electricConsumption: 17.0,
+    priceMin: 14500,
+    priceMax: 22000,
+    scores: {
+      reliability: 7,
+      economy: 10,
+      performance: 5,
+      luxury: 5,
+      technology: 7,
+      resale: 5,
+      practicality: 7,
+      maintenance: 7,
+    },
+    estimatedAnnualMaintenance: 450,
+    strengths: ["Quiet, smooth city drive", "Low routine service needs", "Low energy cost"],
+    weaknesses: ["Battery health affects usable range", "Home or workplace charging helps"],
+  },
+  {
+    id: "mazda-cx-30",
+    slug: "mazda-cx-30",
+    make: "Mazda",
+    model: "CX-30",
+    trim: "2.5L Preferred AWD",
+    yearStart: 2020,
+    yearEnd: 2023,
+    bodyType: "crossover",
+    fuelType: "petrol",
+    transmission: "6-speed automatic",
+    drivetrain: "All-wheel drive",
+    horsepower: 186,
+    zeroToHundred: 7.8,
+    fuelConsumption: 8.0,
+    priceMin: 21000,
+    priceMax: 29500,
+    scores: {
+      reliability: 8,
+      economy: 6,
+      performance: 7,
+      luxury: 8,
+      technology: 8,
+      resale: 7,
+      practicality: 7,
+      maintenance: 6,
+    },
+    estimatedAnnualMaintenance: 850,
+    strengths: ["Polished cabin", "Engaging road manners", "Premium feel in a compact size"],
+    weaknesses: ["Rear seat and cargo area are modest", "Firm ride on rough pavement"],
+  },
+  {
+    id: "mazda-cx-5",
+    slug: "mazda-cx-5",
+    make: "Mazda",
+    model: "CX-5",
+    trim: "2.5L Touring AWD",
+    yearStart: 2018,
+    yearEnd: 2021,
+    bodyType: "suv",
+    fuelType: "petrol",
+    transmission: "6-speed automatic",
+    drivetrain: "All-wheel drive",
+    horsepower: 187,
+    zeroToHundred: 8.5,
+    fuelConsumption: 8.5,
+    priceMin: 19000,
+    priceMax: 27500,
+    scores: {
+      reliability: 8,
+      economy: 6,
+      performance: 7,
+      luxury: 8,
+      technology: 7,
+      resale: 8,
+      practicality: 9,
+      maintenance: 6,
+    },
+    estimatedAnnualMaintenance: 850,
+    strengths: ["Comfortable, quiet cabin", "Enjoyable handling", "Useful family space"],
+    weaknesses: ["Fuel economy is average", "Rear cargo space trails some rivals"],
+  },
+  {
+    id: "mitsubishi-asx",
+    slug: "mitsubishi-asx",
+    make: "Mitsubishi",
+    model: "ASX",
+    trim: "2.0L GLX",
+    yearStart: 2018,
+    yearEnd: 2021,
+    bodyType: "crossover",
+    fuelType: "petrol",
+    transmission: "CVT automatic",
+    drivetrain: "Front-wheel drive",
+    horsepower: 148,
+    zeroToHundred: 11.5,
+    fuelConsumption: 8.4,
+    priceMin: 13500,
+    priceMax: 19500,
+    scores: {
+      reliability: 7,
+      economy: 6,
+      performance: 4,
+      luxury: 5,
+      technology: 5,
+      resale: 7,
+      practicality: 7,
+      maintenance: 7,
+    },
+    estimatedAnnualMaintenance: 600,
+    strengths: ["Straightforward controls", "Good visibility", "Compact footprint"],
+    weaknesses: ["Older cabin design", "Acceleration and fuel use are average"],
+  },
+  {
+    id: "mitsubishi-outlander",
+    slug: "mitsubishi-outlander",
+    make: "Mitsubishi",
+    model: "Outlander",
+    trim: "2.4L SE AWD",
+    yearStart: 2018,
+    yearEnd: 2021,
+    bodyType: "suv",
+    fuelType: "petrol",
+    transmission: "CVT automatic",
+    drivetrain: "All-wheel drive",
+    horsepower: 166,
+    zeroToHundred: 10.5,
+    fuelConsumption: 8.7,
+    priceMin: 17500,
+    priceMax: 24500,
+    scores: {
+      reliability: 7,
+      economy: 6,
+      performance: 5,
+      luxury: 6,
+      technology: 6,
+      resale: 7,
+      practicality: 9,
+      maintenance: 6,
+    },
+    estimatedAnnualMaintenance: 800,
+    strengths: ["Flexible family layout", "Available AWD", "Good cargo versatility"],
+    weaknesses: ["CVT needs careful inspection", "Engine is noisy under load"],
+  },
+  {
+    id: "suzuki-swift",
+    slug: "suzuki-swift",
+    make: "Suzuki",
+    model: "Swift",
+    trim: "1.2L GLX",
+    yearStart: 2019,
+    yearEnd: 2023,
+    bodyType: "hatchback",
+    fuelType: "petrol",
+    transmission: "CVT automatic",
+    drivetrain: "Front-wheel drive",
+    horsepower: 82,
+    zeroToHundred: 12.0,
+    fuelConsumption: 5.2,
+    priceMin: 8500,
+    priceMax: 13300,
+    scores: {
+      reliability: 8,
+      economy: 9,
+      performance: 4,
+      luxury: 4,
+      technology: 5,
+      resale: 8,
+      practicality: 6,
+      maintenance: 9,
+    },
+    estimatedAnnualMaintenance: 400,
+    strengths: ["Easy to park", "Low fuel use", "Affordable routine upkeep"],
+    weaknesses: ["Limited power on steep roads", "Small rear seat and boot"],
+  },
+  {
+    id: "suzuki-vitara",
+    slug: "suzuki-vitara",
+    make: "Suzuki",
+    model: "Vitara",
+    trim: "1.6L GLX AWD",
+    yearStart: 2018,
+    yearEnd: 2021,
+    bodyType: "crossover",
+    fuelType: "petrol",
+    transmission: "6-speed automatic",
+    drivetrain: "All-wheel drive",
+    horsepower: 118,
+    zeroToHundred: 11.5,
+    fuelConsumption: 6.9,
+    priceMin: 14500,
+    priceMax: 20500,
+    scores: {
+      reliability: 8,
+      economy: 7,
+      performance: 5,
+      luxury: 5,
+      technology: 6,
+      resale: 8,
+      practicality: 7,
+      maintenance: 8,
+    },
+    estimatedAnnualMaintenance: 550,
+    strengths: ["Compact and easy to use", "Useful ground clearance", "Available AWD"],
+    weaknesses: ["Cabin has a budget feel", "Engine is not especially quick"],
+  },
+  {
+    id: "renault-duster",
+    slug: "renault-duster",
+    make: "Renault",
+    model: "Duster",
+    trim: "1.6L Iconic",
+    yearStart: 2019,
+    yearEnd: 2023,
+    bodyType: "suv",
+    fuelType: "petrol",
+    transmission: "CVT automatic",
+    drivetrain: "Front-wheel drive",
+    horsepower: 114,
+    zeroToHundred: 11.8,
+    fuelConsumption: 7.1,
+    priceMin: 12500,
+    priceMax: 18000,
+    scores: {
+      reliability: 7,
+      economy: 7,
+      performance: 4,
+      luxury: 4,
+      technology: 4,
+      resale: 6,
+      practicality: 8,
+      maintenance: 7,
+    },
+    estimatedAnnualMaintenance: 550,
+    strengths: ["Good ground clearance", "Simple, practical cabin", "Affordable SUV space"],
+    weaknesses: ["Basic interior finish", "CVT and suspension condition need checking"],
+  },
+  {
+    id: "volkswagen-tiguan",
+    slug: "volkswagen-tiguan",
+    make: "Volkswagen",
+    model: "Tiguan",
+    trim: "2.0L TSI 4Motion Comfortline",
+    yearStart: 2018,
+    yearEnd: 2021,
+    bodyType: "suv",
+    fuelType: "petrol",
+    transmission: "8-speed automatic",
+    drivetrain: "All-wheel drive",
+    horsepower: 184,
+    zeroToHundred: 7.7,
+    fuelConsumption: 9.0,
+    priceMin: 19500,
+    priceMax: 28500,
+    scores: {
+      reliability: 7,
+      economy: 5,
+      performance: 7,
+      luxury: 8,
+      technology: 8,
+      resale: 6,
+      practicality: 8,
+      maintenance: 4,
+    },
+    estimatedAnnualMaintenance: 1250,
+    strengths: ["Refined cabin", "Strong turbo performance", "Flexible interior space"],
+    weaknesses: ["Repairs can be expensive", "Service history is especially important"],
+  },
+  {
+    id: "peugeot-3008-diesel",
+    slug: "peugeot-3008-diesel",
+    make: "Peugeot",
+    model: "3008",
+    trim: "1.5L BlueHDi Allure",
+    yearStart: 2018,
+    yearEnd: 2021,
+    bodyType: "crossover",
+    fuelType: "diesel",
+    transmission: "8-speed automatic",
+    drivetrain: "Front-wheel drive",
+    horsepower: 130,
+    zeroToHundred: 10.0,
+    fuelConsumption: 5.2,
+    priceMin: 18000,
+    priceMax: 26500,
+    scores: {
+      reliability: 7,
+      economy: 9,
+      performance: 5,
+      luxury: 8,
+      technology: 8,
+      resale: 5,
+      practicality: 8,
+      maintenance: 4,
+    },
+    estimatedAnnualMaintenance: 1000,
+    strengths: ["Efficient diesel engine", "Distinctive, well-finished cabin", "Comfortable ride"],
+    weaknesses: ["Diesel upkeep needs a good history", "Small steering wheel takes adjustment"],
+  },
+  {
+    id: "bmw-x1",
+    slug: "bmw-x1",
+    make: "BMW",
+    model: "X1",
+    trim: "sDrive20i xLine",
+    yearStart: 2018,
+    yearEnd: 2021,
+    bodyType: "crossover",
+    fuelType: "petrol",
+    transmission: "8-speed automatic",
+    drivetrain: "Front-wheel drive",
+    horsepower: 192,
+    zeroToHundred: 7.7,
+    fuelConsumption: 7.2,
+    priceMin: 22000,
+    priceMax: 32000,
+    scores: {
+      reliability: 7,
+      economy: 6,
+      performance: 7,
+      luxury: 8,
+      technology: 8,
+      resale: 6,
+      practicality: 7,
+      maintenance: 4,
+    },
+    estimatedAnnualMaintenance: 1450,
+    strengths: ["Premium cabin", "Responsive powertrain", "Easy-to-use cargo area"],
+    weaknesses: ["Premium repair costs", "Options vary considerably by example"],
+  },
+  {
+    id: "mercedes-gla-250",
+    slug: "mercedes-benz-gla-250",
+    make: "Mercedes-Benz",
+    model: "GLA 250",
+    trim: "2.0L 4MATIC",
+    yearStart: 2017,
+    yearEnd: 2020,
+    bodyType: "crossover",
+    fuelType: "petrol",
+    transmission: "7-speed dual-clutch automatic",
+    drivetrain: "All-wheel drive",
+    horsepower: 208,
+    zeroToHundred: 6.6,
+    fuelConsumption: 7.9,
+    priceMin: 21000,
+    priceMax: 30500,
+    scores: {
+      reliability: 6,
+      economy: 6,
+      performance: 8,
+      luxury: 8,
+      technology: 8,
+      resale: 6,
+      practicality: 6,
+      maintenance: 3,
+    },
+    estimatedAnnualMaintenance: 1550,
+    strengths: ["Strong acceleration", "Premium cabin feel", "Compact city footprint"],
+    weaknesses: ["Rear space is limited", "Repairs and parts can be costly"],
+  },
+  {
+    id: "lexus-nx-300h",
+    slug: "lexus-nx-300h",
+    make: "Lexus",
+    model: "NX 300h",
+    trim: "2.5L Hybrid Luxury AWD",
+    yearStart: 2018,
+    yearEnd: 2021,
+    bodyType: "suv",
+    fuelType: "hybrid",
+    transmission: "e-CVT automatic",
+    drivetrain: "All-wheel drive",
+    horsepower: 194,
+    zeroToHundred: 9.2,
+    fuelConsumption: 6.7,
+    priceMin: 26000,
+    priceMax: 37000,
+    scores: {
+      reliability: 9,
+      economy: 8,
+      performance: 6,
+      luxury: 9,
+      technology: 8,
+      resale: 8,
+      practicality: 8,
+      maintenance: 7,
+    },
+    estimatedAnnualMaintenance: 1100,
+    strengths: ["Quiet, comfortable cabin", "Efficient for a luxury SUV", "Strong reliability reputation"],
+    weaknesses: ["Premium purchase price", "Cargo space trails some larger SUVs"],
+  },
+];
+
+export const cars = carSchema.array().parse(carRecords.map(addCarPhoto));
 
 export function getCarBySlug(slug: string) {
   return cars.find((car) => car.slug === slug);

@@ -243,25 +243,23 @@ export function CarDetail({ car }: { car: Car }) {
           <h2>Cars with a similar feel</h2>
           <div className="garage-grid">
             {similarCars.map((similar) => (
-              <Link
-                className="garage-card"
-                href={`/cars/${similar.slug}`}
-                key={similar.id}
-              >
+              <article className="garage-card" key={similar.id}>
                 <CarImage car={similar} />
                 <div className="garage-card-body">
                   <h2>
-                    {similar.make} {similar.model}
+                    <Link href={`/cars/${similar.slug}`}>
+                      {similar.make} {similar.model}
+                    </Link>
                   </h2>
                   <p>
                     {similar.bodyType} · {formatCurrency(similar.priceMin)}–
                     {formatCurrency(similar.priceMax)}
                   </p>
-                  <span className="brand-link">
+                  <Link className="brand-link" href={`/cars/${similar.slug}`}>
                     Take a closer look <ArrowRight size={12} />
-                  </span>
+                  </Link>
                 </div>
-              </Link>
+              </article>
             ))}
           </div>
         </section>

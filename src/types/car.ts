@@ -48,6 +48,14 @@ export const carSchema = z.object({
   estimatedAnnualMaintenance: z.number(),
   image: z.string().url(),
   imagePosition: z.string().optional(),
+  imageAttribution: z
+    .object({
+      author: z.string(),
+      sourceUrl: z.string().url(),
+      licenseName: z.string(),
+      licenseUrl: z.string().url().optional(),
+    })
+    .optional(),
   strengths: z.array(z.string()),
   weaknesses: z.array(z.string()),
 });

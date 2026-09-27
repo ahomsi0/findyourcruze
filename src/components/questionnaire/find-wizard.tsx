@@ -280,7 +280,7 @@ export function FindWizard() {
 
           <div className="wizard-footer">
             <span className="wizard-footer-note">
-              20 demo cars · Lebanon market · estimates only
+              {cars.length} demo cars · Lebanon market · estimates only
             </span>
             <div className="wizard-footer-actions">
               {stepIndex > 0 ? (

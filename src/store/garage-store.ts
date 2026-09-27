@@ -43,7 +43,7 @@ export const useGarageStore = create<GarageState>()(
       clearCompare: () => set({ compareIds: [] }),
     }),
     {
-      name: "motch-garage",
+      name: "findyourcruze-garage",
       storage: createJSONStorage(() => localStorage),
       skipHydration: true,
       partialize: (state) => ({

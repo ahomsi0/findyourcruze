@@ -2,8 +2,10 @@ import Link from "next/link";
 import { ArrowRight, Check, Clock3, Compass, ShieldCheck } from "lucide-react";
 import { MatchmakingPreview } from "@/components/home/matchmaking-preview";
 import { HowItWorks } from "@/components/home/how-it-works";
+import { BrandSymbol } from "@/components/layout/brand";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
+import { cars } from "@/data/cars";
 
 export default function HomePage() {
   return (
@@ -46,7 +48,7 @@ export default function HomePage() {
               </div>
               <span className="metric-divider" />
               <div>
-                <strong>20 cars</strong>
+                <strong>{cars.length} cars</strong>
                 <span>in our demo market</span>
               </div>
               <span className="metric-divider" />
@@ -93,8 +95,8 @@ export default function HomePage() {
               Find my car <ArrowRight aria-hidden="true" size={16} />
             </Link>
           </div>
-          <div className="closing-mark" aria-hidden="true">
-            m<span>.</span>
+          <div className="closing-mark">
+            <BrandSymbol className="closing-mark-symbol" />
           </div>
           <div className="closing-meta">
             <span>
