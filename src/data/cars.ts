@@ -2,7 +2,7 @@ import { carSchema, type Car } from "@/types/car";
 
 type CarInput = Omit<Car, "image" | "imageAttribution">;
 type CarPhoto = Pick<Car, "image"> & {
-  imageAttribution: NonNullable<Car["imageAttribution"]>;
+  imageAttribution?: NonNullable<Car["imageAttribution"]>;
 };
 
 const carPhotos: Record<string, CarPhoto> = {
@@ -455,14 +455,1533 @@ const carPhotos: Record<string, CarPhoto> = {
       licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0"
     }
   },
+  "toyota-avalon": {
+    image:
+      "https://commons.wikimedia.org/wiki/Special:FilePath/06_Toyota_Avalon_XLS.jpg?width=1280",
+  },
+  "toyota-venza": {
+    image:
+      "https://commons.wikimedia.org/wiki/Special:FilePath/14_Toyota_Venza_LE.jpg?width=1280",
+  },
+  "toyota-4runner": {
+    image:
+      "https://commons.wikimedia.org/wiki/Special:FilePath/1988_Toyota_4Runner_SR5_V6_in_Red%2C_front_left%2C_08-23-2026.jpg?width=1280",
+  },
+  "toyota-tacoma": {
+    image:
+      "https://commons.wikimedia.org/wiki/Special:FilePath/1995_Toyota_Tacoma_LX_in_Paradise_Blue_Metallic%2C_front_left%2C_11-05-2023.jpg?width=1280",
+  },
+  "honda-odyssey": {
+    image:
+      "https://commons.wikimedia.org/wiki/Special:FilePath/2015_Honda_Odyssey_EX_in_Modern_Steel_Metallic%2C_front_left%2C_07-04-2026.jpg?width=1280",
+  },
+  "kia-carnival": {
+    image:
+      "https://commons.wikimedia.org/wiki/Special:FilePath/22_Kia_Carnival_SX.jpg?width=1280",
+  },
+  "toyota-sienna": {
+    image:
+      "https://commons.wikimedia.org/wiki/Special:FilePath/2000_Toyota_Sienna_XLE_in_Woodland_Pearl%2C_front_left%2C_07-08-2026.jpg?width=1280",
+  },
+  "nissan-patrol": {
+    image:
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Nissan_Patrol_Royale_4x4_LE_2024_(11).jpg?width=1280",
+  },
+  "jeep-wrangler": {
+    image:
+      "https://commons.wikimedia.org/wiki/Special:FilePath/21_Jeep_Wrangler_Unlimited_High_Altitude.jpg?width=1280",
+  },
+  "ford-bronco": {
+    image:
+      "https://commons.wikimedia.org/wiki/Special:FilePath/1992_Ford_Bronco_XLT_in_Deep_Shadow_Blue_Metallic%2C_front_left%2C_07-04-2026.jpg?width=1280",
+  },
+  "subaru-forester": {
+    image:
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Subaru_Forester_(49978080997).jpg?width=1280",
+  },
+  "subaru-outback": {
+    image:
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Subaru_Outback_172532620.jpg?width=1280",
+  },
+  "mazda-cx-9": {
+    image:
+      "https://commons.wikimedia.org/wiki/Special:FilePath/18_Mazda_CX-9_Grand_Touring.jpg?width=1280",
+  },
+  "nissan-sentra": {
+    image:
+      "https://commons.wikimedia.org/wiki/Special:FilePath/24_Nissan_Sentra_S.jpg?width=1280",
+  },
+  "volkswagen-jetta-ii": {
+    image:
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Volkswagen_Jetta_II_001.jpg?width=1280",
+  },
+  "volkswagen-passat": {
+    image:
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Volkswagen_Passat_160144911.jpg?width=1280",
+  },
+  "skoda-octavia": {
+    image:
+      "https://commons.wikimedia.org/wiki/Special:FilePath/%C5%A0koda_Octavia_1.5_TSI_(2024)_(54724554757).jpg?width=1280",
+  },
+  "audi-q5": {
+    image:
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Audi_Q5_Sportback_50_TFSI_e_(2024)_(54730425200).jpg?width=1280",
+  },
+  "bmw-530i": {
+    image:
+      "https://commons.wikimedia.org/wiki/Special:FilePath/BMW_G30_(5er)_164634.jpg?width=1280",
+  },
+  "mercedes-e-class": {
+    image:
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Mercedes-Benz_E-Class_(V214)_001.jpg?width=1280",
+  },
+  "lexus-rx-350": {
+    image:
+      "https://commons.wikimedia.org/wiki/Special:FilePath/16_Lexus_RX_350_Base.jpg?width=1280",
+  },
+  "volvo-xc60": {
+    image:
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Volvo_XC60_(SPA)_184228.jpg?width=1280",
+  },
+  "cadillac-escalade": {
+    image:
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Cadillac_Escalade_(52046002202).jpg?width=1280",
+  },
+  "chevrolet-tahoe": {
+    image:
+      "https://commons.wikimedia.org/wiki/Special:FilePath/25_Chevrolet_Tahoe_High_Country.jpg?width=1280",
+  },
+  "ford-f-150-raptor": {
+    image:
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Ford_F-150_Raptor_(2025)_(55209639540).jpg?width=1280",
+  },
+  "mitsubishi-l200": {
+    image:
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Mitsubishi_L200_112649.jpg?width=1280",
+  },
+  "hyundai-ioniq-5": {
+    image:
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Hyundai_Ioniq_5.jpg?width=1280",
+  },
+  "kia-ev6": {
+    image:
+      "https://commons.wikimedia.org/wiki/Special:FilePath/22_Kia_EV6_Wind.jpg?width=1280",
+  },
+  "byd-atto-3": {
+    image:
+      "https://commons.wikimedia.org/wiki/Special:FilePath/BYD_Atto_3_(2024)_(54734025568).jpg?width=1280",
+  },
+  "porsche-macan-electric": {
+    image:
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Porsche_Macan_(2025)_(54732319476).jpg?width=1280",
+  },
 };
 
-function makeDemoCar(input: CarInput): CarInput {
-  return input;
+type DemoCarInput = Omit<
+  CarInput,
+  "scores" | "estimatedAnnualMaintenance" | "strengths" | "weaknesses"
+> & {
+  scores?: Partial<Car["scores"]>;
+  estimatedAnnualMaintenance?: number;
+  strengths?: string[];
+  weaknesses?: string[];
+};
+
+function makeDemoCar(input: DemoCarInput): CarInput {
+  return {
+    ...input,
+    scores: {
+      reliability: 6,
+      economy: 6,
+      performance: 6,
+      luxury: 5,
+      technology: 5,
+      resale: 6,
+      practicality: 6,
+      maintenance: 6,
+      ...input.scores,
+    },
+    estimatedAnnualMaintenance:
+      input.estimatedAnnualMaintenance ?? Math.round(input.priceMin * 0.035),
+    strengths: input.strengths ?? ["Broad model availability", "Everyday versatility"],
+    weaknesses: input.weaknesses ?? ["Condition varies by individual car"],
+  };
 }
 
+const additionalCarRecords: CarInput[] = [
+  makeDemoCar({
+    id: "toyota-avalon",
+    slug: "toyota-avalon",
+    make: "Toyota",
+    model: "Avalon",
+    trim: "3.5L V6 XLE",
+    yearStart: 2005,
+    yearEnd: 2012,
+    bodyType: "sedan",
+    fuelType: "petrol",
+    transmission: "6-speed automatic",
+    drivetrain: "Front-wheel drive",
+    horsepower: 268,
+    zeroToHundred: 7.2,
+    fuelConsumption: 10.2,
+    priceMin: 6500,
+    priceMax: 15500,
+    scores: {
+      reliability: 8,
+      economy: 5,
+      performance: 7,
+      luxury: 7,
+      resale: 8,
+      practicality: 7,
+      maintenance: 7,
+    },
+    estimatedAnnualMaintenance: 850,
+    strengths: ["Smooth, quiet V6 drive", "Generous rear-seat room"],
+    weaknesses: [
+      "Older safety and infotainment tech",
+      "Higher fuel use than compact sedans",
+    ],
+  }),
+  makeDemoCar({
+    id: "toyota-venza",
+    slug: "toyota-venza",
+    make: "Toyota",
+    model: "Venza",
+    trim: "2.7L LE",
+    yearStart: 2013,
+    yearEnd: 2015,
+    bodyType: "crossover",
+    fuelType: "petrol",
+    transmission: "6-speed automatic",
+    drivetrain: "Front-wheel drive",
+    horsepower: 182,
+    zeroToHundred: 9.5,
+    fuelConsumption: 9.1,
+    priceMin: 9000,
+    priceMax: 17500,
+    scores: {
+      reliability: 8,
+      economy: 6,
+      practicality: 8,
+      maintenance: 7,
+      resale: 7,
+    },
+    strengths: ["Easy cabin access", "Useful cargo area"],
+    weaknesses: [
+      "Older interior technology",
+      "Not as efficient as a hybrid crossover",
+    ],
+  }),
+  makeDemoCar({
+    id: "toyota-4runner",
+    slug: "toyota-4runner",
+    make: "Toyota",
+    model: "4Runner",
+    trim: "3.0L V6 SR5 4WD",
+    yearStart: 1988,
+    yearEnd: 1995,
+    bodyType: "suv",
+    fuelType: "petrol",
+    transmission: "4-speed automatic",
+    drivetrain: "Four-wheel drive",
+    horsepower: 150,
+    zeroToHundred: 12.2,
+    fuelConsumption: 13.8,
+    priceMin: 7000,
+    priceMax: 16000,
+    scores: {
+      reliability: 8,
+      economy: 3,
+      performance: 4,
+      luxury: 3,
+      technology: 2,
+      resale: 8,
+      practicality: 8,
+      maintenance: 6,
+    },
+    estimatedAnnualMaintenance: 1100,
+    strengths: ["Rugged body-on-frame construction", "Strong trail capability"],
+    weaknesses: [
+      "Very old safety equipment",
+      "High fuel use and age-related upkeep",
+    ],
+  }),
+  makeDemoCar({
+    id: "toyota-tacoma",
+    slug: "toyota-tacoma",
+    make: "Toyota",
+    model: "Tacoma",
+    trim: "2.7L Regular Cab",
+    yearStart: 1995,
+    yearEnd: 2004,
+    bodyType: "pickup",
+    fuelType: "petrol",
+    transmission: "5-speed manual",
+    drivetrain: "Rear-wheel drive",
+    horsepower: 150,
+    zeroToHundred: 11.5,
+    fuelConsumption: 10.8,
+    priceMin: 7000,
+    priceMax: 15500,
+    scores: {
+      reliability: 8,
+      economy: 5,
+      performance: 4,
+      luxury: 3,
+      technology: 2,
+      resale: 8,
+      practicality: 8,
+      maintenance: 7,
+    },
+    strengths: [
+      "Simple, useful work-truck layout",
+      "Strong reputation for durability",
+    ],
+    weaknesses: [
+      "Basic comfort and safety equipment",
+      "Older examples need careful rust checks",
+    ],
+  }),
+  makeDemoCar({
+    id: "honda-odyssey",
+    slug: "honda-odyssey",
+    make: "Honda",
+    model: "Odyssey",
+    trim: "3.5L V6 EX",
+    yearStart: 2011,
+    yearEnd: 2017,
+    bodyType: "minivan",
+    fuelType: "petrol",
+    transmission: "6-speed automatic",
+    drivetrain: "Front-wheel drive",
+    horsepower: 248,
+    zeroToHundred: 8.4,
+    fuelConsumption: 10.7,
+    priceMin: 12500,
+    priceMax: 24500,
+    scores: {
+      reliability: 8,
+      economy: 5,
+      performance: 6,
+      practicality: 10,
+      maintenance: 7,
+      resale: 8,
+    },
+    estimatedAnnualMaintenance: 1050,
+    strengths: [
+      "Flexible seating for a family",
+      "Comfortable long-distance ride",
+    ],
+    weaknesses: [
+      "Large footprint in tight parking",
+      "V6 fuel costs add up in city traffic",
+    ],
+  }),
+  makeDemoCar({
+    id: "kia-carnival",
+    slug: "kia-carnival",
+    make: "Kia",
+    model: "Carnival",
+    trim: "3.5L V6 SX",
+    yearStart: 2022,
+    yearEnd: 2024,
+    bodyType: "minivan",
+    fuelType: "petrol",
+    transmission: "8-speed automatic",
+    drivetrain: "Front-wheel drive",
+    horsepower: 290,
+    zeroToHundred: 7.8,
+    fuelConsumption: 9.8,
+    priceMin: 27500,
+    priceMax: 44000,
+    scores: {
+      economy: 5,
+      performance: 7,
+      luxury: 7,
+      technology: 8,
+      practicality: 10,
+      maintenance: 7,
+    },
+    estimatedAnnualMaintenance: 1250,
+    strengths: ["Roomy three-row cabin", "Modern driver-assistance features"],
+    weaknesses: [
+      "Wide body can be awkward in older city streets",
+      "Premium trims are costly",
+    ],
+  }),
+  makeDemoCar({
+    id: "toyota-sienna",
+    slug: "toyota-sienna",
+    make: "Toyota",
+    model: "Sienna",
+    trim: "3.0L V6 XLE",
+    yearStart: 1998,
+    yearEnd: 2003,
+    bodyType: "minivan",
+    fuelType: "petrol",
+    transmission: "4-speed automatic",
+    drivetrain: "Front-wheel drive",
+    horsepower: 210,
+    zeroToHundred: 9.8,
+    fuelConsumption: 11.5,
+    priceMin: 4500,
+    priceMax: 9500,
+    scores: {
+      reliability: 7,
+      economy: 4,
+      performance: 5,
+      luxury: 4,
+      technology: 2,
+      resale: 7,
+      practicality: 9,
+      maintenance: 6,
+    },
+    strengths: [
+      "Practical sliding-door access",
+      "Flexible passenger and cargo layout",
+    ],
+    weaknesses: [
+      "Age brings repair and safety concerns",
+      "Heavy fuel use for daily driving",
+    ],
+  }),
+  makeDemoCar({
+    id: "nissan-patrol",
+    slug: "nissan-patrol",
+    make: "Nissan",
+    model: "Patrol",
+    trim: "5.6L V8 Royale 4WD",
+    yearStart: 2019,
+    yearEnd: 2024,
+    bodyType: "suv",
+    fuelType: "petrol",
+    transmission: "7-speed automatic",
+    drivetrain: "Four-wheel drive",
+    horsepower: 400,
+    zeroToHundred: 6.6,
+    fuelConsumption: 14.8,
+    priceMin: 42000,
+    priceMax: 78000,
+    scores: {
+      reliability: 8,
+      economy: 3,
+      performance: 9,
+      luxury: 9,
+      technology: 8,
+      resale: 8,
+      practicality: 9,
+      maintenance: 4,
+    },
+    estimatedAnnualMaintenance: 2600,
+    strengths: [
+      "Strong V8 power and off-road ability",
+      "Spacious three-row interior",
+    ],
+    weaknesses: [
+      "High fuel and maintenance costs",
+      "Large size is demanding in town",
+    ],
+  }),
+  makeDemoCar({
+    id: "jeep-wrangler",
+    slug: "jeep-wrangler",
+    make: "Jeep",
+    model: "Wrangler Unlimited",
+    trim: "3.6L V6 High Altitude",
+    yearStart: 2018,
+    yearEnd: 2023,
+    bodyType: "suv",
+    fuelType: "petrol",
+    transmission: "8-speed automatic",
+    drivetrain: "Four-wheel drive",
+    horsepower: 285,
+    zeroToHundred: 7.5,
+    fuelConsumption: 12.4,
+    priceMin: 26000,
+    priceMax: 49000,
+    scores: {
+      reliability: 6,
+      economy: 4,
+      performance: 7,
+      luxury: 6,
+      technology: 6,
+      resale: 9,
+      practicality: 7,
+      maintenance: 5,
+    },
+    estimatedAnnualMaintenance: 1750,
+    strengths: ["Excellent off-road hardware", "Removable roof and doors"],
+    weaknesses: [
+      "Road noise and firm ride",
+      "Fuel economy trails most crossovers",
+    ],
+  }),
+  makeDemoCar({
+    id: "ford-bronco",
+    slug: "ford-bronco",
+    make: "Ford",
+    model: "Bronco",
+    trim: "5.0L V8 XLT",
+    yearStart: 1992,
+    yearEnd: 1996,
+    bodyType: "suv",
+    fuelType: "petrol",
+    transmission: "4-speed automatic",
+    drivetrain: "Four-wheel drive",
+    horsepower: 185,
+    zeroToHundred: 10.8,
+    fuelConsumption: 15.2,
+    priceMin: 8500,
+    priceMax: 22000,
+    scores: {
+      reliability: 5,
+      economy: 2,
+      performance: 6,
+      luxury: 4,
+      technology: 2,
+      resale: 7,
+      practicality: 7,
+      maintenance: 4,
+    },
+    estimatedAnnualMaintenance: 1600,
+    strengths: ["Classic full-size off-roader", "Simple mechanical character"],
+    weaknesses: [
+      "Older safety and emissions equipment",
+      "Parts condition matters more than mileage",
+    ],
+  }),
+  makeDemoCar({
+    id: "subaru-forester",
+    slug: "subaru-forester",
+    make: "Subaru",
+    model: "Forester",
+    trim: "2.5i Premium AWD",
+    yearStart: 2018,
+    yearEnd: 2023,
+    bodyType: "suv",
+    fuelType: "petrol",
+    transmission: "CVT automatic",
+    drivetrain: "All-wheel drive",
+    horsepower: 182,
+    zeroToHundred: 9.0,
+    fuelConsumption: 8.1,
+    priceMin: 14500,
+    priceMax: 28500,
+    scores: {
+      reliability: 7,
+      economy: 7,
+      practicality: 9,
+      maintenance: 6,
+      technology: 7,
+    },
+    strengths: ["Good outward visibility", "Standard all-wheel drive"],
+    weaknesses: [
+      "CVT response feels relaxed",
+      "Some repairs can cost more than mainstream rivals",
+    ],
+  }),
+  makeDemoCar({
+    id: "subaru-outback",
+    slug: "subaru-outback",
+    make: "Subaru",
+    model: "Outback",
+    trim: "2.5i Premium AWD",
+    yearStart: 2020,
+    yearEnd: 2025,
+    bodyType: "crossover",
+    fuelType: "petrol",
+    transmission: "CVT automatic",
+    drivetrain: "All-wheel drive",
+    horsepower: 182,
+    zeroToHundred: 9.5,
+    fuelConsumption: 8.0,
+    priceMin: 17500,
+    priceMax: 33500,
+    scores: {
+      reliability: 7,
+      economy: 7,
+      practicality: 9,
+      technology: 7,
+      maintenance: 6,
+    },
+    strengths: [
+      "Comfortable ride with useful ground clearance",
+      "Large cargo area",
+    ],
+    weaknesses: [
+      "CVT is not especially engaging",
+      "Infotainment controls take time to learn",
+    ],
+  }),
+  makeDemoCar({
+    id: "mazda-cx-9",
+    slug: "mazda-cx-9",
+    make: "Mazda",
+    model: "CX-9",
+    trim: "2.5L Turbo Grand Touring AWD",
+    yearStart: 2018,
+    yearEnd: 2023,
+    bodyType: "suv",
+    fuelType: "petrol",
+    transmission: "6-speed automatic",
+    drivetrain: "All-wheel drive",
+    horsepower: 250,
+    zeroToHundred: 7.8,
+    fuelConsumption: 10.1,
+    priceMin: 19000,
+    priceMax: 36500,
+    scores: {
+      economy: 5,
+      performance: 7,
+      luxury: 8,
+      technology: 7,
+      practicality: 8,
+      maintenance: 6,
+    },
+    estimatedAnnualMaintenance: 1400,
+    strengths: ["Upscale cabin presentation", "Composed road manners"],
+    weaknesses: [
+      "Third row is tighter than larger rivals",
+      "Turbo engine prefers premium fuel",
+    ],
+  }),
+  makeDemoCar({
+    id: "nissan-sentra",
+    slug: "nissan-sentra",
+    make: "Nissan",
+    model: "Sentra",
+    trim: "2.0L S",
+    yearStart: 2020,
+    yearEnd: 2024,
+    bodyType: "sedan",
+    fuelType: "petrol",
+    transmission: "CVT automatic",
+    drivetrain: "Front-wheel drive",
+    horsepower: 149,
+    zeroToHundred: 9.8,
+    fuelConsumption: 6.8,
+    priceMin: 14500,
+    priceMax: 25500,
+    scores: {
+      reliability: 7,
+      economy: 8,
+      performance: 4,
+      practicality: 7,
+      maintenance: 7,
+    },
+    strengths: ["Efficient everyday commuter", "Comfortable front seats"],
+    weaknesses: ["Modest acceleration", "CVT needs careful service history"],
+  }),
+  makeDemoCar({
+    id: "volkswagen-jetta-ii",
+    slug: "volkswagen-jetta-ii",
+    make: "Volkswagen",
+    model: "Jetta II",
+    trim: "1.8L GL",
+    yearStart: 1984,
+    yearEnd: 1992,
+    bodyType: "sedan",
+    fuelType: "petrol",
+    transmission: "5-speed manual",
+    drivetrain: "Front-wheel drive",
+    horsepower: 90,
+    zeroToHundred: 11.4,
+    fuelConsumption: 7.8,
+    priceMin: 2500,
+    priceMax: 8000,
+    scores: {
+      reliability: 5,
+      economy: 7,
+      performance: 3,
+      luxury: 3,
+      technology: 2,
+      resale: 5,
+      practicality: 6,
+      maintenance: 5,
+    },
+    estimatedAnnualMaintenance: 850,
+    strengths: [
+      "Compact, easy-to-place footprint",
+      "Straightforward older-car layout",
+    ],
+    weaknesses: [
+      "Very limited modern safety equipment",
+      "Age and parts availability require inspection",
+    ],
+  }),
+  makeDemoCar({
+    id: "volkswagen-passat",
+    slug: "volkswagen-passat",
+    make: "Volkswagen",
+    model: "Passat",
+    trim: "2.0L TSI SE",
+    yearStart: 2015,
+    yearEnd: 2022,
+    bodyType: "sedan",
+    fuelType: "petrol",
+    transmission: "6-speed automatic",
+    drivetrain: "Front-wheel drive",
+    horsepower: 174,
+    zeroToHundred: 7.8,
+    fuelConsumption: 7.7,
+    priceMin: 14000,
+    priceMax: 28500,
+    scores: {
+      economy: 7,
+      performance: 6,
+      luxury: 6,
+      technology: 6,
+      practicality: 8,
+      maintenance: 5,
+    },
+    estimatedAnnualMaintenance: 1200,
+    strengths: ["Roomy rear seat", "Refined highway ride"],
+    weaknesses: [
+      "Maintenance can cost more than a Japanese sedan",
+      "Some trims have dated infotainment",
+    ],
+  }),
+  makeDemoCar({
+    id: "skoda-octavia",
+    slug: "skoda-octavia",
+    make: "Škoda",
+    model: "Octavia",
+    trim: "1.5 TSI Ambition",
+    yearStart: 2020,
+    yearEnd: 2024,
+    bodyType: "hatchback",
+    fuelType: "petrol",
+    transmission: "7-speed DSG automatic",
+    drivetrain: "Front-wheel drive",
+    horsepower: 150,
+    zeroToHundred: 8.5,
+    fuelConsumption: 6.3,
+    priceMin: 18500,
+    priceMax: 33500,
+    scores: {
+      reliability: 7,
+      economy: 8,
+      performance: 6,
+      technology: 8,
+      practicality: 9,
+      maintenance: 6,
+    },
+    strengths: ["Large liftback cargo opening", "Efficient turbo engine"],
+    weaknesses: [
+      "DSG service history is important",
+      "Brand support varies by market",
+    ],
+  }),
+  makeDemoCar({
+    id: "audi-q5",
+    slug: "audi-q5",
+    make: "Audi",
+    model: "Q5",
+    trim: "50 TFSI e Sportback quattro",
+    yearStart: 2021,
+    yearEnd: 2024,
+    bodyType: "suv",
+    fuelType: "hybrid",
+    transmission: "7-speed S tronic automatic",
+    drivetrain: "All-wheel drive",
+    horsepower: 362,
+    zeroToHundred: 5.3,
+    fuelConsumption: 2.8,
+    electricConsumption: 18.5,
+    priceMin: 36000,
+    priceMax: 62000,
+    scores: {
+      economy: 8,
+      performance: 8,
+      luxury: 9,
+      technology: 8,
+      resale: 6,
+      maintenance: 4,
+    },
+    estimatedAnnualMaintenance: 2500,
+    strengths: [
+      "Strong combined hybrid power",
+      "Premium cabin and all-weather grip",
+    ],
+    weaknesses: [
+      "Charging access affects efficiency",
+      "Complex premium-car maintenance",
+    ],
+  }),
+  makeDemoCar({
+    id: "bmw-530i",
+    slug: "bmw-530i",
+    make: "BMW",
+    model: "5 Series",
+    trim: "530i G30",
+    yearStart: 2017,
+    yearEnd: 2023,
+    bodyType: "sedan",
+    fuelType: "petrol",
+    transmission: "8-speed automatic",
+    drivetrain: "Rear-wheel drive",
+    horsepower: 248,
+    zeroToHundred: 6.2,
+    fuelConsumption: 7.3,
+    priceMin: 26000,
+    priceMax: 46500,
+    scores: {
+      performance: 8,
+      luxury: 9,
+      technology: 8,
+      practicality: 7,
+      maintenance: 4,
+    },
+    estimatedAnnualMaintenance: 2300,
+    strengths: [
+      "Balanced handling and ride comfort",
+      "Strong turbo-four performance",
+    ],
+    weaknesses: [
+      "Premium parts and service costs",
+      "Equipment varies substantially by trim",
+    ],
+  }),
+  makeDemoCar({
+    id: "mercedes-e-class",
+    slug: "mercedes-e-class",
+    make: "Mercedes-Benz",
+    model: "E 350",
+    trim: "V214",
+    yearStart: 2024,
+    yearEnd: 2025,
+    bodyType: "sedan",
+    fuelType: "petrol",
+    transmission: "9-speed automatic",
+    drivetrain: "Rear-wheel drive",
+    horsepower: 255,
+    zeroToHundred: 6.1,
+    fuelConsumption: 7.8,
+    priceMin: 46000,
+    priceMax: 79000,
+    scores: {
+      reliability: 6,
+      performance: 7,
+      luxury: 10,
+      technology: 10,
+      resale: 6,
+      maintenance: 3,
+    },
+    estimatedAnnualMaintenance: 2800,
+    strengths: [
+      "Quiet, comfortable cabin",
+      "Current-generation safety and media systems",
+    ],
+    weaknesses: [
+      "High purchase and repair costs",
+      "Many features depend on option packages",
+    ],
+  }),
+  makeDemoCar({
+    id: "lexus-rx-350",
+    slug: "lexus-rx-350",
+    make: "Lexus",
+    model: "RX 350",
+    trim: "3.5L Luxury AWD",
+    yearStart: 2016,
+    yearEnd: 2022,
+    bodyType: "suv",
+    fuelType: "petrol",
+    transmission: "8-speed automatic",
+    drivetrain: "All-wheel drive",
+    horsepower: 295,
+    zeroToHundred: 7.7,
+    fuelConsumption: 9.8,
+    priceMin: 27000,
+    priceMax: 49000,
+    scores: {
+      reliability: 9,
+      economy: 5,
+      performance: 7,
+      luxury: 9,
+      technology: 7,
+      resale: 9,
+      practicality: 8,
+      maintenance: 7,
+    },
+    estimatedAnnualMaintenance: 1500,
+    strengths: [
+      "Strong reliability and resale record",
+      "Quiet, well-finished interior",
+    ],
+    weaknesses: [
+      "Fuel use is high for a midsize SUV",
+      "Infotainment is dated on early years",
+    ],
+  }),
+  makeDemoCar({
+    id: "volvo-xc60",
+    slug: "volvo-xc60",
+    make: "Volvo",
+    model: "XC60",
+    trim: "B5 Momentum AWD",
+    yearStart: 2020,
+    yearEnd: 2024,
+    bodyType: "suv",
+    fuelType: "hybrid",
+    transmission: "8-speed automatic",
+    drivetrain: "All-wheel drive",
+    horsepower: 247,
+    zeroToHundred: 7.0,
+    fuelConsumption: 8.5,
+    priceMin: 25500,
+    priceMax: 48500,
+    scores: {
+      reliability: 7,
+      economy: 6,
+      performance: 7,
+      luxury: 9,
+      technology: 9,
+      resale: 6,
+      practicality: 8,
+      maintenance: 4,
+    },
+    estimatedAnnualMaintenance: 2100,
+    strengths: ["Excellent seat comfort", "Strong safety technology"],
+    weaknesses: [
+      "Repairs can be expensive",
+      "Some controls rely on the center screen",
+    ],
+  }),
+  makeDemoCar({
+    id: "cadillac-escalade",
+    slug: "cadillac-escalade",
+    make: "Cadillac",
+    model: "Escalade",
+    trim: "6.2L V8 Premium Luxury",
+    yearStart: 2015,
+    yearEnd: 2020,
+    bodyType: "suv",
+    fuelType: "petrol",
+    transmission: "8-speed automatic",
+    drivetrain: "Rear-wheel drive",
+    horsepower: 420,
+    zeroToHundred: 6.2,
+    fuelConsumption: 14.5,
+    priceMin: 34000,
+    priceMax: 68000,
+    scores: {
+      performance: 9,
+      luxury: 10,
+      technology: 8,
+      resale: 7,
+      practicality: 10,
+      maintenance: 3,
+    },
+    estimatedAnnualMaintenance: 3000,
+    strengths: ["Very spacious three-row cabin", "Strong V8 towing capability"],
+    weaknesses: [
+      "High fuel and tire costs",
+      "Large dimensions make parking difficult",
+    ],
+  }),
+  makeDemoCar({
+    id: "chevrolet-tahoe",
+    slug: "chevrolet-tahoe",
+    make: "Chevrolet",
+    model: "Tahoe",
+    trim: "5.3L V8 High Country",
+    yearStart: 2021,
+    yearEnd: 2025,
+    bodyType: "suv",
+    fuelType: "petrol",
+    transmission: "10-speed automatic",
+    drivetrain: "Four-wheel drive",
+    horsepower: 355,
+    zeroToHundred: 7.0,
+    fuelConsumption: 12.8,
+    priceMin: 41000,
+    priceMax: 76000,
+    scores: {
+      performance: 8,
+      luxury: 8,
+      technology: 8,
+      practicality: 10,
+      maintenance: 4,
+    },
+    estimatedAnnualMaintenance: 2800,
+    strengths: ["Room for passengers and luggage", "Confident highway towing"],
+    weaknesses: ["Bulky in city parking", "V8 fuel costs are substantial"],
+  }),
+  makeDemoCar({
+    id: "ford-f-150-raptor",
+    slug: "ford-f-150-raptor",
+    make: "Ford",
+    model: "F-150 Raptor",
+    trim: "3.5L EcoBoost 4WD",
+    yearStart: 2021,
+    yearEnd: 2025,
+    bodyType: "pickup",
+    fuelType: "petrol",
+    transmission: "10-speed automatic",
+    drivetrain: "Four-wheel drive",
+    horsepower: 450,
+    zeroToHundred: 5.5,
+    fuelConsumption: 15.0,
+    priceMin: 60000,
+    priceMax: 105000,
+    scores: {
+      reliability: 6,
+      economy: 2,
+      performance: 10,
+      luxury: 8,
+      technology: 8,
+      resale: 8,
+      practicality: 8,
+      maintenance: 3,
+    },
+    estimatedAnnualMaintenance: 3500,
+    strengths: ["High-speed off-road suspension", "Powerful twin-turbo V6"],
+    weaknesses: [
+      "Very high purchase and running costs",
+      "Oversized for many urban routes",
+    ],
+  }),
+  makeDemoCar({
+    id: "mitsubishi-l200",
+    slug: "mitsubishi-l200",
+    make: "Mitsubishi",
+    model: "L200",
+    trim: "2.4L DI-D Double Cab 4WD",
+    yearStart: 2015,
+    yearEnd: 2023,
+    bodyType: "pickup",
+    fuelType: "diesel",
+    transmission: "6-speed automatic",
+    drivetrain: "Four-wheel drive",
+    horsepower: 181,
+    zeroToHundred: 11.8,
+    fuelConsumption: 8.5,
+    priceMin: 18500,
+    priceMax: 37000,
+    scores: {
+      reliability: 7,
+      economy: 8,
+      performance: 5,
+      technology: 6,
+      resale: 7,
+      practicality: 9,
+      maintenance: 7,
+    },
+    strengths: [
+      "Useful payload and four-wheel drive",
+      "Diesel torque suits work and travel",
+    ],
+    weaknesses: [
+      "Pickup ride is firm when unladen",
+      "Cabin is less polished than an SUV",
+    ],
+  }),
+  makeDemoCar({
+    id: "hyundai-ioniq-5",
+    slug: "hyundai-ioniq-5",
+    make: "Hyundai",
+    model: "Ioniq 5",
+    trim: "77.4 kWh Long Range RWD",
+    yearStart: 2022,
+    yearEnd: 2024,
+    bodyType: "crossover",
+    fuelType: "electric",
+    transmission: "Single-speed automatic",
+    drivetrain: "Rear-wheel drive",
+    horsepower: 225,
+    zeroToHundred: 7.4,
+    electricConsumption: 17.4,
+    priceMin: 24000,
+    priceMax: 41000,
+    scores: {
+      reliability: 7,
+      economy: 10,
+      performance: 7,
+      luxury: 8,
+      technology: 9,
+      practicality: 8,
+      maintenance: 8,
+    },
+    estimatedAnnualMaintenance: 950,
+    strengths: ["Fast DC charging capability", "Flat floor and roomy cabin"],
+    weaknesses: [
+      "Home charging makes ownership easier",
+      "Range drops in cold or fast driving",
+    ],
+  }),
+  makeDemoCar({
+    id: "kia-ev6",
+    slug: "kia-ev6",
+    make: "Kia",
+    model: "EV6",
+    trim: "77.4 kWh Long Range RWD",
+    yearStart: 2022,
+    yearEnd: 2024,
+    bodyType: "crossover",
+    fuelType: "electric",
+    transmission: "Single-speed automatic",
+    drivetrain: "Rear-wheel drive",
+    horsepower: 225,
+    zeroToHundred: 7.3,
+    electricConsumption: 17.2,
+    priceMin: 26000,
+    priceMax: 44500,
+    scores: {
+      reliability: 7,
+      economy: 10,
+      performance: 7,
+      luxury: 8,
+      technology: 9,
+      practicality: 7,
+      maintenance: 8,
+    },
+    estimatedAnnualMaintenance: 1000,
+    strengths: [
+      "Very quick charging on compatible stations",
+      "Composed ride and sharp styling",
+    ],
+    weaknesses: [
+      "Rear visibility is limited",
+      "Charging access shapes real-world convenience",
+    ],
+  }),
+  makeDemoCar({
+    id: "byd-atto-3",
+    slug: "byd-atto-3",
+    make: "BYD",
+    model: "Atto 3",
+    trim: "60.5 kWh Extended Range",
+    yearStart: 2022,
+    yearEnd: 2024,
+    bodyType: "crossover",
+    fuelType: "electric",
+    transmission: "Single-speed automatic",
+    drivetrain: "Front-wheel drive",
+    horsepower: 201,
+    zeroToHundred: 7.3,
+    electricConsumption: 16.0,
+    priceMin: 20500,
+    priceMax: 34500,
+    scores: {
+      reliability: 7,
+      economy: 10,
+      performance: 7,
+      luxury: 7,
+      technology: 8,
+      practicality: 8,
+      maintenance: 8,
+    },
+    estimatedAnnualMaintenance: 850,
+    strengths: ["Good equipment for the price", "Quiet electric city driving"],
+    weaknesses: [
+      "Public charging coverage may vary",
+      "Resale history is still developing locally",
+    ],
+  }),
+  makeDemoCar({
+    id: "porsche-macan-electric",
+    slug: "porsche-macan-electric",
+    make: "Porsche",
+    model: "Macan Electric",
+    trim: "Electric 4 AWD",
+    yearStart: 2024,
+    yearEnd: 2026,
+    bodyType: "suv",
+    fuelType: "electric",
+    transmission: "Single-speed automatic",
+    drivetrain: "All-wheel drive",
+    horsepower: 402,
+    zeroToHundred: 5.2,
+    electricConsumption: 21.1,
+    priceMin: 76000,
+    priceMax: 112000,
+    scores: {
+      reliability: 7,
+      economy: 9,
+      performance: 10,
+      luxury: 10,
+      technology: 10,
+      resale: 8,
+      practicality: 7,
+      maintenance: 4,
+    },
+    estimatedAnnualMaintenance: 3100,
+    strengths: [
+      "Sports-car response in an SUV body",
+      "Premium finish and rapid charging",
+    ],
+    weaknesses: [
+      "Very high purchase price",
+      "Large wheels and options increase running costs",
+    ],
+  }),
+];
+
+type PremiumPhotoFamily =
+  | "mercedes-cla"
+  | "mercedes-c"
+  | "mercedes-e"
+  | "mercedes-s"
+  | "mercedes-gla"
+  | "mercedes-glb"
+  | "mercedes-glc"
+  | "mercedes-gle"
+  | "mercedes-g"
+  | "mercedes-eqb"
+  | "bmw-1"
+  | "bmw-2-gran-coupe"
+  | "bmw-2-coupe"
+  | "bmw-3"
+  | "bmw-m3"
+  | "bmw-4"
+  | "bmw-5"
+  | "bmw-7"
+  | "bmw-x2"
+  | "bmw-x3"
+  | "bmw-i4"
+  | "porsche-911"
+  | "porsche-911-gt3"
+  | "porsche-cayman"
+  | "porsche-boxster"
+  | "porsche-panamera"
+  | "porsche-cayenne"
+  | "porsche-macan"
+  | "porsche-taycan"
+  | "bugatti-eb110"
+  | "bugatti-veyron"
+  | "bugatti-chiron"
+  | "bugatti-divo";
+
+type PremiumMake = "Mercedes-Benz" | "BMW" | "Porsche" | "Bugatti";
+type PremiumRow = readonly [
+  id: string,
+  model: string,
+  trim: string,
+  yearStart: number,
+  yearEnd: number,
+  bodyType: Car["bodyType"],
+  fuelType: Car["fuelType"],
+  horsepower: number,
+  zeroToHundred: number,
+  priceMin: number,
+  priceMax: number,
+  drivetrain: string,
+  photoFamily: PremiumPhotoFamily,
+];
+
+type PremiumCarSeed = Omit<CarInput, "scores" | "estimatedAnnualMaintenance" | "strengths" | "weaknesses"> & {
+  photoFamily: PremiumPhotoFamily;
+};
+
+function premiumRows(
+  make: PremiumMake,
+  rows: readonly PremiumRow[],
+): PremiumCarSeed[] {
+  return rows.map(
+    ([
+      id,
+      model,
+      trim,
+      yearStart,
+      yearEnd,
+      bodyType,
+      fuelType,
+      horsepower,
+      zeroToHundred,
+      priceMin,
+      priceMax,
+      drivetrain,
+      photoFamily,
+    ]) => ({
+      id,
+      slug: id,
+      make,
+      model,
+      trim,
+      yearStart,
+      yearEnd,
+      bodyType,
+      fuelType,
+      horsepower,
+      zeroToHundred,
+      priceMin,
+      priceMax,
+      drivetrain,
+      photoFamily,
+    }),
+  );
+}
+
+function commonsPhoto(fileName: string, imageAttribution?: CarPhoto["imageAttribution"]): CarPhoto {
+  return {
+    image: `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(fileName)}?width=1280`,
+    ...(imageAttribution ? { imageAttribution } : {}),
+  };
+}
+
+const premiumPhotoFamilies: Record<PremiumPhotoFamily, CarPhoto> = {
+  "mercedes-cla": commonsPhoto("Mercedes-Benz CLA250 Coupé (C117).jpg"),
+  "mercedes-c": carPhotos["mercedes-c300"],
+  "mercedes-e": carPhotos["mercedes-e-class"],
+  "mercedes-s": commonsPhoto(
+    "Mercedes-Benz W223 IAA 2021 1X7A0206.jpg",
+    {
+      author: "Alexander Migl",
+      sourceUrl:
+        "https://commons.wikimedia.org/wiki/File:Mercedes-Benz_W223_IAA_2021_1X7A0206.jpg",
+      licenseName: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0",
+    },
+  ),
+  "mercedes-gla": carPhotos["mercedes-gla-250"],
+  "mercedes-glb": commonsPhoto("Mercedes Benz GLB 250 4Matic 2022.jpg", {
+    author: "RL GNZLZ",
+    sourceUrl:
+      "https://commons.wikimedia.org/wiki/File:Mercedes_Benz_GLB_250_4Matic_2022.jpg",
+    licenseName: "CC BY-SA 4.0",
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0",
+  }),
+  "mercedes-glc": commonsPhoto(
+    "Mercedes-Benz GLC 300 4MATIC (X254, 2023) (55214764232).jpg",
+  ),
+  "mercedes-gle": commonsPhoto("23 Mercedes-Benz GLE450 4Matic.jpg"),
+  "mercedes-g": commonsPhoto("Mercedes-Benz G Class W463.jpg"),
+  "mercedes-eqb": commonsPhoto("MERCEDES-EQ EQB China.jpg", {
+    author: "Dinkun Chen",
+    sourceUrl:
+      "https://commons.wikimedia.org/wiki/File:MERCEDES-EQ_EQB_China.jpg",
+    licenseName: "CC BY-SA 4.0",
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0",
+  }),
+  "bmw-1": commonsPhoto("BMW 1 Series (F40) (48805186671).jpg", {
+    author: "Rutger van der Maar",
+    sourceUrl:
+      "https://commons.wikimedia.org/wiki/File:BMW_1_Series_(F40)_(48805186671).jpg",
+    licenseName: "CC BY 2.0",
+    licenseUrl: "https://creativecommons.org/licenses/by/2.0",
+  }),
+  "bmw-2-gran-coupe": commonsPhoto("BMW 2 Series II Gran Coupe 001.jpg"),
+  "bmw-2-coupe": commonsPhoto(
+    "BMW 2-Series Coupé (F22) M230i (2019) (52204484279).jpg",
+    {
+      author: "Charles from Port Chester, New York",
+      sourceUrl:
+        "https://commons.wikimedia.org/wiki/File:BMW_2-Series_Coupé_(F22)_M230i_(2019)_(52204484279).jpg",
+      licenseName: "CC BY 2.0",
+      licenseUrl: "https://creativecommons.org/licenses/by/2.0",
+    },
+  ),
+  "bmw-3": carPhotos["bmw-320i"],
+  "bmw-m3": commonsPhoto("BMW M3 Competition (G80) IMG 4042.jpg", {
+    author: "Alexander Migl",
+    sourceUrl:
+      "https://commons.wikimedia.org/wiki/File:BMW_M3_Competition_(G80)_IMG_4042.jpg",
+    licenseName: "CC BY-SA 4.0",
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0",
+  }),
+  "bmw-4": commonsPhoto("BMW 4 SERIES CONVERTIBLE (G23) China (3).jpg", {
+    author: "Dinkun Chen",
+    sourceUrl:
+      "https://commons.wikimedia.org/wiki/File:BMW_4_SERIES_CONVERTIBLE_(G23)_China_(3).jpg",
+    licenseName: "CC BY-SA 4.0",
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0",
+  }),
+  "bmw-5": carPhotos["bmw-530i"],
+  "bmw-7": commonsPhoto("BMW 7-Series (51962850599).jpg"),
+  "bmw-x2": commonsPhoto("25 BMW X2 xDrive28i.jpg"),
+  "bmw-x3": commonsPhoto("BMW X3 095936.jpg"),
+  "bmw-i4": commonsPhoto("2024 BMW i4 DSC 7124.jpg", {
+    author: "Alexander Migl",
+    sourceUrl:
+      "https://commons.wikimedia.org/wiki/File:2024_BMW_i4_DSC_7124.jpg",
+    licenseName: "CC BY-SA 4.0",
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0",
+  }),
+  "porsche-911": commonsPhoto("Porsche 3BA-992PA1 911 Carrera (24030910291).jpg"),
+  "porsche-911-gt3": commonsPhoto(
+    "Porsche 911 GT3 (992, 2024) (54095544726).jpg",
+    {
+      author: "Charles from Port Chester, New York",
+      sourceUrl:
+        "https://commons.wikimedia.org/wiki/File:Porsche_911_GT3_(992,_2024)_(54095544726).jpg",
+      licenseName: "CC BY 2.0",
+      licenseUrl: "https://creativecommons.org/licenses/by/2.0",
+    },
+  ),
+  "porsche-cayman": commonsPhoto("Porsche 718 Cayman GT4 RS 1.jpg"),
+  "porsche-boxster": commonsPhoto("17 Porsche 718 Boxster Base.jpg"),
+  "porsche-panamera": commonsPhoto("Porsche panamera.jpg"),
+  "porsche-cayenne": commonsPhoto("Porsche Cayenne (2018) (54863055067).jpg"),
+  "porsche-macan": commonsPhoto("22 Porsche Macan S.jpg"),
+  "porsche-taycan": commonsPhoto("2023 Porsche Taycan 4S Cross Turismo.jpg"),
+  "bugatti-eb110": commonsPhoto("Black Bugatti EB110.jpg"),
+  "bugatti-veyron": commonsPhoto("Bugatti Veyron Berlin.JPG"),
+  "bugatti-chiron": commonsPhoto("Bugatti Chiron at Paris.jpg"),
+  "bugatti-divo": commonsPhoto(
+    "Bugatti Divo, Paris Motor Show 2018, IMG 0706.jpg",
+    {
+      author: "Alexander Migl",
+      sourceUrl:
+        "https://commons.wikimedia.org/wiki/File:Bugatti_Divo,_Paris_Motor_Show_2018,_IMG_0706.jpg",
+      licenseName: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0",
+    },
+  ),
+};
+
+const premiumCarSeeds: PremiumCarSeed[] = [
+  ...premiumRows("Mercedes-Benz", [
+    ["mercedes-benz-cla-180", "CLA 180", "C117", 2015, 2019, "coupe", "petrol", 122, 9.5, 14000, 22000, "Front-wheel drive", "mercedes-cla"],
+    ["mercedes-benz-cla-200", "CLA 200", "C117", 2015, 2019, "coupe", "petrol", 156, 8.5, 16000, 25000, "Front-wheel drive", "mercedes-cla"],
+    ["mercedes-benz-cla-250", "CLA 250", "C117", 2015, 2019, "coupe", "petrol", 208, 6.7, 18000, 28000, "All-wheel drive", "mercedes-cla"],
+    ["mercedes-benz-amg-cla-35", "AMG CLA 35", "C118 4MATIC", 2020, 2024, "coupe", "petrol", 302, 4.9, 39000, 65000, "All-wheel drive", "mercedes-cla"],
+    ["mercedes-benz-c-180", "C 180", "W205", 2015, 2021, "sedan", "petrol", 156, 8.6, 15000, 25000, "Rear-wheel drive", "mercedes-c"],
+    ["mercedes-benz-c-200", "C 200", "W206 mild hybrid", 2022, 2025, "sedan", "hybrid", 204, 7.3, 28000, 47000, "Rear-wheel drive", "mercedes-c"],
+    ["mercedes-benz-amg-c-43", "AMG C 43", "W206 4MATIC", 2023, 2025, "sedan", "hybrid", 402, 4.6, 52000, 85000, "All-wheel drive", "mercedes-c"],
+    ["mercedes-benz-amg-c-63-e-performance", "AMG C 63 S E PERFORMANCE", "W206 plug-in hybrid", 2024, 2025, "sedan", "hybrid", 671, 3.4, 72000, 125000, "All-wheel drive", "mercedes-c"],
+    ["mercedes-benz-e-200", "E 200", "W214", 2024, 2025, "sedan", "hybrid", 197, 7.6, 47000, 76000, "Rear-wheel drive", "mercedes-e"],
+    ["mercedes-benz-e-300e", "E 300 e", "W214 plug-in hybrid", 2024, 2025, "sedan", "hybrid", 312, 6.4, 58000, 91000, "Rear-wheel drive", "mercedes-e"],
+    ["mercedes-benz-e-450", "E 450", "W214 4MATIC", 2024, 2025, "sedan", "hybrid", 375, 4.5, 62000, 99000, "All-wheel drive", "mercedes-e"],
+    ["mercedes-benz-s-450", "S 450", "W223 4MATIC", 2021, 2025, "sedan", "hybrid", 362, 5.1, 68000, 112000, "All-wheel drive", "mercedes-s"],
+    ["mercedes-benz-s-580", "S 580", "W223 4MATIC", 2021, 2025, "sedan", "hybrid", 496, 4.4, 82000, 138000, "All-wheel drive", "mercedes-s"],
+    ["mercedes-benz-gla-200", "GLA 200", "H247", 2021, 2025, "crossover", "petrol", 163, 8.7, 25000, 42000, "Front-wheel drive", "mercedes-gla"],
+    ["mercedes-benz-glb-250", "GLB 250", "X247 4MATIC", 2020, 2024, "suv", "petrol", 221, 6.9, 31000, 51000, "All-wheel drive", "mercedes-glb"],
+    ["mercedes-benz-glc-300", "GLC 300", "X254 4MATIC", 2023, 2025, "suv", "hybrid", 255, 6.2, 41000, 69000, "All-wheel drive", "mercedes-glc"],
+    ["mercedes-benz-glc-350e", "GLC 350 e", "X254 plug-in hybrid 4MATIC", 2025, 2026, "suv", "hybrid", 313, 6.7, 61000, 85000, "All-wheel drive", "mercedes-glc"],
+    ["mercedes-benz-gle-450", "GLE 450", "V167 4MATIC", 2020, 2025, "suv", "hybrid", 362, 5.7, 52000, 89000, "All-wheel drive", "mercedes-gle"],
+    ["mercedes-benz-g-550", "G 550", "W463 4MATIC", 2020, 2025, "suv", "hybrid", 416, 5.6, 88000, 155000, "All-wheel drive", "mercedes-g"],
+    ["mercedes-benz-eqb-350", "EQB 350", "X243 4MATIC", 2022, 2025, "suv", "electric", 288, 6.2, 36000, 62000, "All-wheel drive", "mercedes-eqb"],
+  ]),
+  ...premiumRows("BMW", [
+    ["bmw-120i", "120i", "F40 Sport Line", 2020, 2024, "hatchback", "petrol", 178, 7.0, 19000, 33000, "Front-wheel drive", "bmw-1"],
+    ["bmw-m135i-xdrive", "M135i xDrive", "F40 M Performance", 2020, 2024, "hatchback", "petrol", 302, 4.8, 31000, 52000, "All-wheel drive", "bmw-1"],
+    ["bmw-218i-gran-coupe", "218i Gran Coupe", "F44 Sport Line", 2020, 2024, "sedan", "petrol", 140, 8.7, 20000, 34000, "Front-wheel drive", "bmw-2-gran-coupe"],
+    ["bmw-230i-coupe", "230i Coupe", "G42 M Sport", 2022, 2025, "coupe", "petrol", 255, 5.6, 33000, 55000, "Rear-wheel drive", "bmw-2-coupe"],
+    ["bmw-m240i-coupe", "M240i Coupe", "G42 xDrive", 2022, 2025, "coupe", "petrol", 382, 4.3, 41000, 68000, "All-wheel drive", "bmw-2-coupe"],
+    ["bmw-330i", "330i", "G20 M Sport", 2019, 2025, "sedan", "petrol", 255, 5.8, 26000, 49000, "Rear-wheel drive", "bmw-3"],
+    ["bmw-330e", "330e", "G20 plug-in hybrid", 2020, 2025, "sedan", "hybrid", 288, 5.6, 30000, 55000, "Rear-wheel drive", "bmw-3"],
+    ["bmw-m340i-xdrive", "M340i xDrive", "G20 M Performance", 2020, 2025, "sedan", "hybrid", 382, 4.4, 37000, 67000, "All-wheel drive", "bmw-3"],
+    ["bmw-m3-competition", "M3 Competition", "G80 xDrive", 2021, 2025, "sedan", "petrol", 503, 3.8, 62000, 105000, "All-wheel drive", "bmw-m3"],
+    ["bmw-420i-gran-coupe", "420i Gran Coupe", "G26 M Sport", 2021, 2025, "hatchback", "petrol", 184, 7.5, 32000, 54000, "Rear-wheel drive", "bmw-4"],
+    ["bmw-430i-convertible", "430i Convertible", "G23 M Sport", 2021, 2025, "coupe", "petrol", 255, 6.2, 39000, 66000, "Rear-wheel drive", "bmw-4"],
+    ["bmw-m440i-xdrive", "M440i xDrive", "G22 M Performance", 2021, 2025, "coupe", "hybrid", 382, 4.5, 43000, 74000, "All-wheel drive", "bmw-4"],
+    ["bmw-m4-competition", "M4 Competition", "G82 xDrive", 2021, 2025, "coupe", "petrol", 503, 3.9, 68000, 118000, "All-wheel drive", "bmw-4"],
+    ["bmw-520d", "520d", "G30 Luxury Line", 2017, 2023, "sedan", "diesel", 190, 7.3, 24000, 44000, "Rear-wheel drive", "bmw-5"],
+    ["bmw-540i-xdrive", "540i xDrive", "G30 M Sport", 2017, 2023, "sedan", "hybrid", 335, 4.7, 33000, 62000, "All-wheel drive", "bmw-5"],
+    ["bmw-550e-xdrive", "550e xDrive", "G60 plug-in hybrid", 2024, 2026, "sedan", "hybrid", 483, 4.3, 61000, 89000, "All-wheel drive", "bmw-5"],
+    ["bmw-740i-xdrive", "740i", "G70 xDrive", 2023, 2026, "sedan", "hybrid", 375, 5.4, 74000, 119000, "All-wheel drive", "bmw-7"],
+    ["bmw-x2-xdrive28i", "X2 xDrive28i", "U10 M Sport", 2024, 2026, "crossover", "petrol", 241, 6.2, 39000, 61000, "All-wheel drive", "bmw-x2"],
+    ["bmw-x3-xdrive30i", "X3 xDrive30i", "G01 xLine", 2018, 2024, "suv", "petrol", 248, 6.0, 29000, 52000, "All-wheel drive", "bmw-x3"],
+    ["bmw-i4-edrive40", "i4 eDrive40", "G26 Gran Coupe", 2022, 2026, "hatchback", "electric", 335, 5.6, 41000, 72000, "Rear-wheel drive", "bmw-i4"],
+  ]),
+  ...premiumRows("Porsche", [
+    ["porsche-911-carrera", "911 Carrera", "992", 2020, 2025, "coupe", "petrol", 388, 4.1, 78000, 145000, "Rear-wheel drive", "porsche-911"],
+    ["porsche-911-carrera-4s", "911 Carrera 4S", "992 AWD", 2020, 2025, "coupe", "petrol", 443, 3.3, 94000, 175000, "All-wheel drive", "porsche-911"],
+    ["porsche-911-carrera-gts", "911 Carrera GTS", "992 T-Hybrid", 2025, 2026, "coupe", "hybrid", 532, 2.9, 145000, 225000, "Rear-wheel drive", "porsche-911"],
+    ["porsche-911-turbo-s", "911 Turbo S", "992", 2021, 2025, "coupe", "petrol", 640, 2.7, 190000, 310000, "All-wheel drive", "porsche-911"],
+    ["porsche-911-gt3", "911 GT3", "992", 2021, 2025, "coupe", "petrol", 502, 3.4, 165000, 270000, "Rear-wheel drive", "porsche-911-gt3"],
+    ["porsche-911-gt3-rs", "911 GT3 RS", "992", 2023, 2025, "coupe", "petrol", 518, 3.2, 245000, 420000, "Rear-wheel drive", "porsche-911-gt3"],
+    ["porsche-911-targa-4-gts", "911 Targa 4 GTS", "992", 2021, 2025, "coupe", "hybrid", 532, 2.9, 155000, 255000, "All-wheel drive", "porsche-911"],
+    ["porsche-718-cayman", "718 Cayman", "982", 2017, 2025, "coupe", "petrol", 300, 4.9, 48000, 88000, "Rear-wheel drive", "porsche-cayman"],
+    ["porsche-cayman-gts-4", "718 Cayman GTS 4.0", "982", 2020, 2024, "coupe", "petrol", 394, 4.5, 69000, 118000, "Rear-wheel drive", "porsche-cayman"],
+    ["porsche-cayman-gt4-rs", "718 Cayman GT4 RS", "982", 2022, 2025, "coupe", "petrol", 493, 3.4, 125000, 205000, "Rear-wheel drive", "porsche-cayman"],
+    ["porsche-718-boxster", "718 Boxster", "982", 2017, 2025, "coupe", "petrol", 300, 4.9, 47000, 85000, "Rear-wheel drive", "porsche-boxster"],
+    ["porsche-boxster-gts-4", "718 Boxster GTS 4.0", "982", 2020, 2024, "coupe", "petrol", 394, 4.5, 70000, 122000, "Rear-wheel drive", "porsche-boxster"],
+    ["porsche-panamera-4", "Panamera 4", "971", 2021, 2024, "sedan", "petrol", 348, 5.3, 52000, 98000, "All-wheel drive", "porsche-panamera"],
+    ["porsche-panamera-4-e-hybrid", "Panamera 4 E-Hybrid", "971 plug-in hybrid", 2021, 2024, "sedan", "hybrid", 455, 4.4, 65000, 125000, "All-wheel drive", "porsche-panamera"],
+    ["porsche-cayenne-s", "Cayenne S", "9Y0", 2019, 2024, "suv", "petrol", 468, 4.8, 52000, 99000, "All-wheel drive", "porsche-cayenne"],
+    ["porsche-cayenne-e-hybrid", "Cayenne E-Hybrid", "9Y0 plug-in hybrid", 2019, 2024, "suv", "hybrid", 463, 4.9, 55000, 107000, "All-wheel drive", "porsche-cayenne"],
+    ["porsche-cayenne-turbo-gt", "Cayenne Turbo GT", "9Y0 Coupe", 2022, 2025, "suv", "petrol", 650, 3.3, 135000, 245000, "All-wheel drive", "porsche-cayenne"],
+    ["porsche-macan-s", "Macan S", "95B", 2019, 2024, "suv", "petrol", 375, 4.8, 36000, 76000, "All-wheel drive", "porsche-macan"],
+    ["porsche-taycan-4s", "Taycan 4S", "Y1A", 2020, 2025, "sedan", "electric", 522, 3.7, 57000, 118000, "All-wheel drive", "porsche-taycan"],
+    ["porsche-taycan-turbo-s", "Taycan Turbo S", "Y1A", 2020, 2025, "sedan", "electric", 750, 2.8, 99000, 195000, "All-wheel drive", "porsche-taycan"],
+  ]),
+  ...premiumRows("Bugatti", [
+    ["bugatti-eb110-super-sport", "EB110 Super Sport", "1995", 1992, 1995, "coupe", "petrol", 603, 3.2, 900000, 2500000, "All-wheel drive", "bugatti-eb110"],
+    ["bugatti-veyron-16-4", "Veyron 16.4", "EB 16.4", 2005, 2011, "coupe", "petrol", 987, 2.5, 1200000, 2500000, "All-wheel drive", "bugatti-veyron"],
+    ["bugatti-veyron-super-sport", "Veyron Super Sport", "World Record Edition", 2010, 2015, "coupe", "petrol", 1200, 2.5, 2500000, 4500000, "All-wheel drive", "bugatti-veyron"],
+    ["bugatti-chiron", "Chiron", "W16 quad-turbo", 2016, 2022, "coupe", "petrol", 1479, 2.4, 2500000, 4800000, "All-wheel drive", "bugatti-chiron"],
+    ["bugatti-chiron-pur-sport", "Chiron Pur Sport", "W16 quad-turbo", 2020, 2023, "coupe", "petrol", 1500, 2.3, 3300000, 5600000, "All-wheel drive", "bugatti-chiron"],
+    ["bugatti-divo", "Divo", "W16 quad-turbo", 2019, 2021, "coupe", "petrol", 1500, 2.4, 4500000, 8000000, "All-wheel drive", "bugatti-divo"],
+  ]),
+];
+
+const premiumCarPhotos = Object.fromEntries(
+  premiumCarSeeds.map(({ id, photoFamily }) => [
+    id,
+    premiumPhotoFamilies[photoFamily],
+  ]),
+) as Record<string, CarPhoto>;
+
+const premiumCarRecords: CarInput[] = premiumCarSeeds.map((car) => {
+  const {
+    photoFamily: _photoFamily,
+    ...input
+  } = car;
+  const { make, bodyType, fuelType, horsepower, yearEnd, priceMin } = input;
+  const transmission =
+    fuelType === "electric"
+      ? "Single-speed automatic"
+      : make === "Bugatti"
+        ? "7-speed dual-clutch automatic"
+        : make === "Porsche"
+          ? "8-speed PDK automatic"
+          : make === "Mercedes-Benz" &&
+              (input.model.startsWith("CLA") || input.model.startsWith("AMG CLA"))
+            ? "7-speed dual-clutch automatic"
+            : make === "Mercedes-Benz"
+              ? "9-speed automatic"
+              : "8-speed automatic";
+  const strengths =
+    make === "Bugatti"
+      ? ["Exceptional power and acceleration", "Hand-built, limited-production engineering"]
+      : make === "Porsche"
+        ? ["Precise handling and performance", "High-quality cabin and materials"]
+        : make === "BMW"
+          ? ["Responsive powertrain", "Balanced comfort and handling"]
+          : ["Comfort-focused cabin", "Advanced safety and driver-assistance features"];
+  const weaknesses =
+    make === "Bugatti"
+      ? ["Extremely high purchase and service costs", "Specialist maintenance required"]
+      : ["Premium parts and service costs", "Equipment and condition vary by example"];
+  const performance =
+    horsepower >= 900 ? 10 : horsepower >= 600 ? 9 : horsepower >= 400 ? 8 : horsepower >= 300 ? 7 : 6;
+
+  return makeDemoCar({
+    ...input,
+    transmission,
+    fuelConsumption:
+      fuelType === "electric"
+        ? undefined
+        : fuelType === "hybrid"
+          ? 2.8
+          : Math.round((6.4 + horsepower * 0.007) * 10) / 10,
+    electricConsumption:
+      fuelType === "electric" || fuelType === "hybrid"
+        ? Math.round((18.5 + horsepower * 0.004) * 10) / 10
+        : undefined,
+    scores: {
+      reliability: make === "Bugatti" ? 5 : 6,
+      economy: fuelType === "electric" ? 9 : fuelType === "hybrid" ? 8 : 4,
+      performance,
+      luxury: make === "Bugatti" ? 10 : 9,
+      technology: yearEnd >= 2023 ? 9 : 8,
+      resale: make === "Bugatti" ? 9 : 7,
+      practicality: bodyType === "suv" || bodyType === "sedan" ? 7 : 4,
+      maintenance: make === "Bugatti" ? 1 : make === "Porsche" || horsepower > 400 ? 3 : 5,
+    },
+    estimatedAnnualMaintenance:
+      make === "Bugatti"
+        ? Math.round(priceMin * 0.08)
+        : Math.round(priceMin * (make === "Porsche" ? 0.045 : 0.04)),
+    strengths,
+    weaknesses,
+  });
+});
+
 function addCarPhoto(car: CarInput): Car {
-  const photo = carPhotos[car.id];
+  const photo = carPhotos[car.id] ?? premiumCarPhotos[car.id];
   if (!photo) throw new Error(`Missing catalog photo for ${car.id}`);
   return { ...car, ...photo };
 }
@@ -2057,6 +3576,8 @@ const carRecords: CarInput[] = [
     strengths: ["Quiet, comfortable cabin", "Efficient for a luxury SUV", "Strong reliability reputation"],
     weaknesses: ["Premium purchase price", "Cargo space trails some larger SUVs"],
   },
+  ...additionalCarRecords,
+  ...premiumCarRecords,
 ];
 
 export const cars = carSchema.array().parse(carRecords.map(addCarPhoto));

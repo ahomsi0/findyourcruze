@@ -1337,6 +1337,15 @@ a {
   color: #7d8390;
   font-size: 12px;
 }
+.swipe-intro .swipe-no-exact-fit {
+  max-width: 520px;
+  margin: 10px auto 0;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: var(--sage);
+  color: var(--ink-soft);
+  line-height: 1.55;
+}
 .swipe-progress {
   display: flex;
   justify-content: center;
@@ -1470,6 +1479,161 @@ a {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 15px;
+}
+.catalogue-tools {
+  margin-bottom: 19px;
+  padding: 15px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.76);
+}
+.catalogue-search {
+  min-width: 220px;
+  height: 42px;
+  padding: 0 12px;
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: white;
+  color: #818997;
+}
+.catalogue-search:focus-within {
+  border-color: #9cabc7;
+  box-shadow: 0 0 0 3px rgba(77, 115, 187, 0.1);
+}
+.catalogue-search input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: 11px;
+}
+.catalogue-search input::placeholder {
+  color: #9a9fab;
+}
+.catalogue-selects {
+  display: flex;
+  flex: 1;
+  gap: 9px;
+}
+.catalogue-selects label {
+  min-width: 0;
+  flex: 1;
+  display: grid;
+  gap: 4px;
+  color: #858b97;
+  font-size: 9px;
+  font-weight: 650;
+}
+.catalogue-selects select {
+  width: 100%;
+  height: 42px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: white;
+  color: #424c5d;
+  font: inherit;
+  font-size: 10px;
+}
+.catalogue-count {
+  margin: 0 0 13px;
+  color: #868c98;
+  font-size: 10px;
+}
+.catalogue-count strong {
+  color: var(--ink);
+}
+.catalogue-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 15px;
+}
+.catalogue-card {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid #dde0e6;
+  border-radius: 15px;
+  background: white;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+}
+.catalogue-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 9px 24px rgba(25, 34, 51, 0.08);
+}
+.catalogue-card-image,
+.catalogue-card-image .car-image {
+  display: block;
+  height: 178px;
+}
+.catalogue-card-body {
+  padding: 14px;
+}
+.catalogue-tags {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+.catalogue-tags span {
+  padding: 4px 7px;
+  border-radius: 99px;
+  background: #f0f2f6;
+  color: #68768c;
+  font-size: 8px;
+  font-weight: 650;
+}
+.catalogue-card-body h2 {
+  margin: 0 0 5px;
+  font-size: 17px;
+  letter-spacing: -0.045em;
+}
+.catalogue-years {
+  overflow: hidden;
+  margin: 0;
+  color: #858b97;
+  font-size: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.catalogue-card-bottom {
+  margin-top: 14px;
+  padding-top: 11px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #eef0f3;
+}
+.catalogue-card-bottom p {
+  margin: 0;
+  color: #818795;
+  font-size: 9px;
+}
+.catalogue-card-bottom p strong {
+  color: var(--ink);
+  font-size: 12px;
+}
+.catalogue-card-bottom > a {
+  display: inline-flex;
+  gap: 5px;
+  align-items: center;
+  color: #536f9c;
+  font-size: 10px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.catalogue-empty {
+  margin-top: 25px;
 }
 .garage-card {
   overflow: hidden;
@@ -2146,6 +2310,47 @@ a {
   }
   .garage-grid {
     grid-template-columns: 1fr;
+  }
+  .catalogue-tools {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .catalogue-search {
+    width: 100%;
+  }
+  .catalogue-selects {
+    flex-wrap: wrap;
+  }
+  .catalogue-selects label {
+    min-width: calc(50% - 5px);
+  }
+  .catalogue-selects label:last-child {
+    min-width: 100%;
+  }
+  .catalogue-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .catalogue-card-image,
+  .catalogue-card-image .car-image {
+    height: 135px;
+  }
+  .catalogue-card-body {
+    padding: 10px;
+  }
+  .catalogue-card-body h2 {
+    font-size: 14px;
+  }
+  .catalogue-tags {
+    gap: 4px;
+  }
+  .catalogue-tags span {
+    padding: 4px 6px;
+    font-size: 7px;
+  }
+  .catalogue-card-bottom {
+    align-items: flex-start;
+    flex-direction: column;
   }
   .garage-card .car-image {
     height: 212px;

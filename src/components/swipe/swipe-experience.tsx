@@ -62,7 +62,7 @@ export function SwipeExperience() {
       </>
     );
 
-  if (!eligible.length) {
+  if (!deck.length) {
     return (
       <div className="app-shell">
         <AppHeader backHref="/find" backLabel="Back to questions" />
@@ -102,6 +102,12 @@ export function SwipeExperience() {
           </span>
           <h1>Now, what feels like you?</h1>
           <p>We’ve got the practical stuff. Let’s find your taste.</p>
+          {!eligible.length && (
+            <p className="swipe-no-exact-fit" role="status">
+              No exact fit in the demo collection yet. Swipe through the closest
+              options; we’ll call out any trade-offs in your shortlist.
+            </p>
+          )}
           {!completed && (
             <div
               aria-label={`${index + 1} of ${deck.length} cars`}

@@ -4,6 +4,7 @@ import { Brand } from "./brand";
 
 const navigation = [
   { label: "How it works", href: "/#how-it-works" },
+  { label: "Cars", href: "/catalogue" },
   { label: "Compare", href: "/compare" },
   { label: "My garage", href: "/garage" },
 ];

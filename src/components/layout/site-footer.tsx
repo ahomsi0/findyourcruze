@@ -11,6 +11,7 @@ export function SiteFooter() {
         </div>
         <div className="footer-links">
           <Link href="/find">Find your car</Link>
+          <Link href="/catalogue">Browse cars</Link>
           <Link href="/compare">Compare</Link>
           <Link href="/garage">My garage</Link>
         </div>

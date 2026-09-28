@@ -271,7 +271,7 @@ export function FindWizard() {
                 </strong>
                 <p>
                   {candidateCount === 0
-                    ? "That combination is quite specific. Keep going and we’ll help you broaden the search if needed."
+                    ? "No exact match yet. Continue to see the closest available cars and their trade-offs."
                     : "We’re only narrowing the cars using the things you’ve told us matter."}
                 </p>
               </div>

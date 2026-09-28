@@ -116,8 +116,9 @@ export function ResultsExperience() {
           transition={{ duration: reduceMotion ? 0 : 0.35 }}
         >
           <span className="section-kicker">
-            A clearer place to start · {candidates.length} cars fit your
-            essentials
+            {candidates.length
+              ? `A clearer place to start · ${candidates.length} cars fit your essentials`
+              : "No exact fits · closest options from our demo market"}
           </span>
           <h1>
             We’ve seen enough.
@@ -125,8 +126,9 @@ export function ResultsExperience() {
             <em>Here are your three.</em>
           </h1>
           <p>
-            Matched to your practical needs, your priorities and the cars you
-            liked.
+            {candidates.length
+              ? "Matched to your practical needs, your priorities and the cars you liked."
+              : "These options come closest to your choices. Review each trade-off to see where it differs from your brief."}
           </p>
         </motion.div>
 

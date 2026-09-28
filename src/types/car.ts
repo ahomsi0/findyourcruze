@@ -7,6 +7,7 @@ export const bodyTypes = [
   "suv",
   "crossover",
   "pickup",
+  "minivan",
 ] as const;
 
 export const fuelTypes = ["petrol", "diesel", "hybrid", "electric"] as const;
@@ -83,6 +84,7 @@ export const bodyTypeLabels: Record<BodyType, string> = {
   suv: "SUV",
   crossover: "Crossover",
   pickup: "Pickup",
+  minivan: "Minivan",
 };
 
 export const fuelTypeLabels: Record<FuelType, string> = {
